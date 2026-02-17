@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CASPR - Campus Academic Resource Sharing Platform",
   description: "Share and access academic resources with your campus community",
+  icons: {
+    icon: '/icon',
+  },
 };
 
 export default function RootLayout({
