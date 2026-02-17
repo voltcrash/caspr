@@ -443,8 +443,12 @@ export async function searchTags(query: string) {
   return { data, error: null }
 }
 
-// Rating functions
-export async function rateResource(resourceId: string, rating: number) {
+// Rating and Review functions
+export async function rateResource(
+  resourceId: string, 
+  rating: number, 
+  reviewText?: string
+) {
   const supabase = await createClient()
   const user = await getUser()
 
@@ -456,13 +460,14 @@ export async function rateResource(resourceId: string, rating: number) {
     return { error: 'Rating must be between 1 and 5' }
   }
 
-  // Upsert rating (insert or update)
+  // Upsert rating and review (insert or update)
   const { error } = await supabase
     .from('ratings')
     .upsert({
       resource_id: resourceId,
       user_id: user.id,
       rating,
+      review_text: reviewText || null,
     })
 
   if (error) {
@@ -484,7 +489,7 @@ export async function getUserRating(resourceId: string) {
 
   const { data, error } = await supabase
     .from('ratings')
-    .select('rating')
+    .select('rating, review_text, created_at, updated_at')
     .eq('resource_id', resourceId)
     .eq('user_id', user.id)
     .single()
@@ -494,4 +499,63 @@ export async function getUserRating(resourceId: string) {
   }
 
   return { data, error: null }
+}
+
+export async function getResourceReviews(resourceId: string) {
+  const supabase = await createClient()
+
+  const { data, error } = await supabase
+    .from('ratings')
+    .select(`
+      id,
+      rating,
+      review_text,
+      created_at,
+      updated_at,
+      user_id,
+      resource_id,
+      profiles:user_id (
+        id,
+        name,
+        college,
+        branch
+      )
+    `)
+    .eq('resource_id', resourceId)
+    .not('review_text', 'is', null)
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    return { data: null, error: error.message }
+  }
+
+  // Transform the data to match RatingWithProfile type
+  const transformedData = data?.map((rating: any) => ({
+    ...rating,
+    profiles: rating.profiles?.[0] || rating.profiles
+  }))
+
+  return { data: transformedData, error: null }
+}
+
+export async function deleteReview(resourceId: string) {
+  const supabase = await createClient()
+  const user = await getUser()
+
+  if (!user) {
+    return { error: 'Not authenticated' }
+  }
+
+  const { error } = await supabase
+    .from('ratings')
+    .delete()
+    .eq('resource_id', resourceId)
+    .eq('user_id', user.id)
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  revalidatePath(`/resources/${resourceId}`)
+  return { success: true }
 }

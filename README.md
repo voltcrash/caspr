@@ -61,13 +61,31 @@ A Next.js-based platform for students to share and access academic resources lik
   - Most viewed (highest view counts)
 - **Tag Search**: Search resources by comma-separated tags
 - **Combined Filters**: All filters work together seamlessly
-- **Rating System**: 
+- **Star Rating System**: 
   - 5-star rating system for resources
   - Average rating and rating count display
   - Users can rate and update ratings
   - Resource owners cannot rate their own resources
   - Automatic calculation of average ratings
 - **Performance**: Optimized with 9 database indexes for fast queries
+
+### ✅ Task 5: Rating & Review System
+
+- **Written Reviews**: Users can write detailed text reviews (up to 1000 characters)
+- **Review Display**: All reviews displayed on resource detail page with:
+  - Reviewer name, college, and branch
+  - Star rating visualization
+  - Review text (formatted)
+  - Review date
+  - "Edited" indicator for updated reviews
+- **Review Management**:
+  - Edit your own reviews anytime (rating and/or text)
+  - Delete your own reviews
+  - Add review text to existing rating
+  - Submit rating only (review text optional)
+- **One Review Per User**: Database-enforced unique constraint
+- **Review Validation**: Character limit enforcement, owner validation
+- **Community Feedback**: Rich feedback system for resource quality assessment
 
 ## Tech Stack
 
@@ -105,7 +123,8 @@ caspr/
 │   │   ├── ResourceList.tsx        # Resource cards list
 │   │   ├── ResourceFilters.tsx     # Advanced filter sidebar
 │   │   ├── ResourceActions.tsx     # Edit/Delete actions
-│   │   └── RatingStars.tsx         # Star rating component
+│   │   ├── RatingStars.tsx         # Star rating + review form
+│   │   └── ReviewList.tsx          # Review display component
 │   ├── ui/
 │   │   └── ThemeToggle.tsx     # Dark mode toggle button
 │   └── providers/
@@ -128,6 +147,7 @@ caspr/
 ├── DATABASE_SETUP_TASK2.md     # Task 2 database setup
 ├── DATABASE_SETUP_TASK3.md     # Task 3 database setup
 ├── DATABASE_SETUP_TASK4.md     # Task 4 database setup
+├── DATABASE_SETUP_TASK5.md     # Task 5 database setup
 └── .env.local                  # Environment variables
 ```
 
@@ -160,6 +180,7 @@ bun install
 4. Run SQL from `DATABASE_SETUP_TASK2.md` (Task 2: Resources)
 5. Run SQL from `DATABASE_SETUP_TASK3.md` (Task 3: Privacy & Access Control)
 6. Run SQL from `DATABASE_SETUP_TASK4.md` (Task 4: Ratings & Indexes)
+7. Run SQL from `DATABASE_SETUP_TASK5.md` (Task 5: Review Text)
 
 #### B. Storage Setup
 1. Go to Storage in Supabase Dashboard
@@ -190,6 +211,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 - **Task 2 Setup**: See `QUICK_START_TASK2.md` (Resources & Upload)
 - **Task 3 Setup**: See `QUICK_START_TASK3.md` (Privacy & Dark Mode)
 - **Task 4 Setup**: See `QUICK_START_TASK4.md` (Search, Filters & Ratings)
+- **Task 5 Setup**: See `QUICK_START_TASK5.md` (Reviews & Feedback)
 
 ## What You Can Do Now
 
@@ -217,8 +239,12 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 - Add searchable tags to your resources
 - Edit your uploaded resources (including privacy settings)
 - Delete your resources
-- **Rate resources**: Give 1-5 star ratings to other users' resources
-- Update your ratings anytime
+- **Rate & Review resources**: 
+  - Give 1-5 star ratings to other users' resources
+  - Write detailed text reviews (up to 1000 characters)
+  - Edit your ratings and reviews anytime
+  - Delete your reviews
+  - View all reviews from the community
 - Track views and downloads of your uploads
 - Access private resources from your own college
 
@@ -229,6 +255,7 @@ See the following guides for database setup:
 - `DATABASE_SETUP_TASK2.md` - Task 2: Resources, tags, and storage
 - `DATABASE_SETUP_TASK3.md` - Task 3: Privacy settings and access control
 - `DATABASE_SETUP_TASK4.md` - Task 4: Rating system and search indexes
+- `DATABASE_SETUP_TASK5.md` - Task 5: Review text and display
 
 ## Usage
 
@@ -298,14 +325,16 @@ See the following guides for database setup:
 ✅ **Task 1**: User authentication and profile management  
 ✅ **Task 2**: Resource upload, editing, and management  
 ✅ **Task 3**: Privacy settings and dark mode theme  
-✅ **Task 4**: Advanced search, filters, sorting, and rating system  
+✅ **Task 4**: Advanced search, filters, sorting, and star ratings  
+✅ **Task 5**: Written reviews and comprehensive feedback system  
 
 ## Potential Future Enhancements
 
+- Review helpful votes and sorting
+- Resource owner replies to reviews
 - User statistics dashboard
 - Recognition points and badges
 - Resource collections/playlists
-- Comments and discussions on resources
 - Notification system
 - Advanced analytics
 - Mobile app

@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getUser } from '@/lib/actions/auth'
-import { getResource, incrementViewCount, getUserRating } from '@/lib/actions/resources'
+import { getResource, incrementViewCount, getUserRating, getResourceReviews } from '@/lib/actions/resources'
 import ResourceActions from '@/components/resources/ResourceActions'
 import RatingStars from '@/components/resources/RatingStars'
+import ReviewList from '@/components/resources/ReviewList'
 
 export default async function ResourceDetailPage({
   params,
@@ -21,9 +22,13 @@ export default async function ResourceDetailPage({
   // Increment view count
   await incrementViewCount(id)
 
-  // Get user's rating if authenticated
+  // Get user's rating and review if authenticated
   const { data: userRatingData } = await getUserRating(id)
   const userRating = userRatingData?.rating || 0
+  const userReviewText = userRatingData?.review_text || ''
+
+  // Get all reviews for this resource
+  const { data: reviews } = await getResourceReviews(id)
 
   const isOwner = user?.id === resource.user_id
 
@@ -159,17 +164,27 @@ export default async function ResourceDetailPage({
               </div>
             )}
 
-            {/* Rating */}
+            {/* Rating & Review */}
             <div className="border-t pt-6">
-              <h3 className="text-sm font-medium text-gray-500 mb-3">Rate this Resource</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-3">
+                {userRating > 0 ? 'Your Review' : 'Rate & Review'}
+              </h3>
               <RatingStars
                 resourceId={resource.id}
                 currentRating={userRating}
+                currentReviewText={userReviewText}
                 averageRating={resource.average_rating}
                 ratingCount={resource.rating_count}
                 isOwner={isOwner}
               />
             </div>
+
+            {/* All Reviews */}
+            {reviews && reviews.length > 0 && (
+              <div className="border-t pt-6">
+                <ReviewList reviews={reviews} currentUserId={user?.id} />
+              </div>
+            )}
 
             {/* Uploader Info */}
             <div className="border-t pt-6">

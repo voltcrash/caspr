@@ -134,6 +134,7 @@ export interface Database {
           resource_id: string
           user_id: string
           rating: number
+          review_text: string | null
         }
         Insert: {
           id?: string
@@ -142,6 +143,7 @@ export interface Database {
           resource_id: string
           user_id: string
           rating: number
+          review_text?: string | null
         }
         Update: {
           id?: string
@@ -150,6 +152,7 @@ export interface Database {
           resource_id?: string
           user_id?: string
           rating?: number
+          review_text?: string | null
         }
       }
       tags: {
@@ -209,6 +212,16 @@ export type ResourceTagUpdate = Database['public']['Tables']['resource_tags']['U
 export type Rating = Database['public']['Tables']['ratings']['Row']
 export type RatingInsert = Database['public']['Tables']['ratings']['Insert']
 export type RatingUpdate = Database['public']['Tables']['ratings']['Update']
+
+// Extended rating type with reviewer profile
+export interface RatingWithProfile extends Rating {
+  profiles: {
+    id: string
+    name: string
+    college: string
+    branch: string
+  }
+}
 
 // Extended types with relations
 export interface ResourceWithProfile extends Resource {
