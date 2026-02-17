@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { uploadFile, uploadResource } from '@/lib/actions/resources'
+import { uploadResource } from '@/lib/actions/resources'
+import { createClient } from '@/lib/supabase/client'
 import type { ResourceType, ResourceVisibility } from '@/lib/types/database.types'
 
 interface ResourceUploadFormProps {
@@ -92,18 +93,33 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       
       setUploadProgress(30)
 
-      // Upload file to Supabase Storage via FormData (proper binary transfer)
-      const uploadFormData = new FormData()
-      uploadFormData.append('file', file)
-      uploadFormData.append('userId', userId)
-      uploadFormData.append('resourceId', tempResourceId)
+      // Upload file directly from browser to Supabase Storage (bypasses server action size limits)
+      const supabase = createClient()
+      const fileName = `${tempResourceId}_${file.name}`
+      const filePath = `${userId}/${fileName}`
 
-      const { data: fileData, error: fileError } = await uploadFile(uploadFormData)
+      const { data: storageData, error: storageError } = await supabase.storage
+        .from('resource-files')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false,
+          contentType: file.type,
+        })
 
-      if (fileError || !fileData) {
-        setError(fileError || 'Failed to upload file')
+      if (storageError || !storageData) {
+        setError(storageError?.message || 'Failed to upload file')
         setIsLoading(false)
         return
+      }
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('resource-files')
+        .getPublicUrl(filePath)
+
+      const fileData = {
+        path: storageData.path,
+        url: urlData.publicUrl,
       }
 
       setUploadProgress(60)
@@ -140,8 +156,8 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       // Redirect to resources page
       router.push('/resources')
-    } catch (err) {
-      setError('An unexpected error occurred')
+    } catch (err: any) {
+      setError(err?.message || 'An unexpected error occurred. Please try again.')
       setIsLoading(false)
     }
   }
