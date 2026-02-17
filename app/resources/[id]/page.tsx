@@ -59,7 +59,7 @@ export default async function ResourceDetailPage({
   const RESOURCE_TYPE_COLORS: Record<string, string> = {
     notes: 'bg-orange-900/50 text-blue-800',
     question_papers: 'bg-purple-100 text-purple-800',
-    solutions: 'bg-green-100 text-green-800',
+    solutions: 'bg-green-900/50 text-green-300',
     project_reports: 'bg-yellow-100 text-yellow-800',
     study_material: 'bg-pink-100 text-pink-800',
   }

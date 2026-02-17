@@ -137,7 +137,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               Go
             </button>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Separate multiple tags with commas</p>
+          <p className="text-xs text-gray-400 dark:text-gray-400 mt-1">Separate multiple tags with commas</p>
         </form>
 
         {/* Resource Type */}

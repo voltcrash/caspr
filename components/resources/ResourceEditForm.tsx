@@ -75,29 +75,29 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-8 space-y-6">
+    <form onSubmit={handleSubmit} className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-8 space-y-6">
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-900/30 border border-red-800 text-red-400 px-4 py-3 rounded">
           {error}
         </div>
       )}
 
       <div className="bg-gray-900 border border-gray-700 px-4 py-3 rounded">
-        <p className="text-sm text-blue-700">
+        <p className="text-sm text-orange-400">
           <strong>Note:</strong> You cannot change the uploaded file. To upload a different file, please delete this resource and create a new one.
         </p>
       </div>
 
       {/* Title */}
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="title" className="block text-sm font-medium text-gray-400">
           Resource Title *
         </label>
         <input
           id="title"
           type="text"
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           disabled={isLoading}
@@ -106,13 +106,13 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
       {/* Description */}
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="description" className="block text-sm font-medium text-gray-400">
           Description (optional)
         </label>
         <textarea
           id="description"
           rows={3}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           disabled={isLoading}
@@ -122,14 +122,14 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-400">
             Subject/Course *
           </label>
           <input
             id="subject"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             disabled={isLoading}
@@ -138,13 +138,13 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
         {/* Semester */}
         <div>
-          <label htmlFor="semester" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="semester" className="block text-sm font-medium text-gray-400">
             Semester *
           </label>
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
             disabled={isLoading}
@@ -159,13 +159,13 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
         {/* Resource Type */}
         <div>
-          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-400">
             Resource Type *
           </label>
           <select
             id="resource_type"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.resource_type}
             onChange={(e) => setFormData({ ...formData, resource_type: e.target.value as ResourceType })}
             disabled={isLoading}
@@ -180,14 +180,14 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
         {/* Year/Batch */}
         <div>
-          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-400">
             Year/Batch *
           </label>
           <input
             id="year_batch"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.year_batch}
             onChange={(e) => setFormData({ ...formData, year_batch: e.target.value })}
             disabled={isLoading}
@@ -197,11 +197,11 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
       {/* Privacy Setting */}
       <div>
-        <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="visibility" className="block text-sm font-medium text-gray-400 mb-2">
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-black has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -213,16 +213,16 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-semibold text-gray-900">🌐 Public</span>
-                <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded">Recommended</span>
+                <span className="text-sm font-semibold text-white">🌐 Public</span>
+                <span className="px-2 py-0.5 text-xs font-medium bg-green-900/50 text-green-300 rounded">Recommended</span>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 Anyone from any college can view and download this resource
               </p>
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-black has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -234,9 +234,9 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-semibold text-gray-900">🔒 Private</span>
+                <span className="text-sm font-semibold text-white">🔒 Private</span>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 Only students from your college can view and download this resource
               </p>
             </div>
@@ -246,14 +246,14 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
 
       {/* Tags */}
       <div>
-        <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="tags" className="block text-sm font-medium text-gray-400">
           Tags/Keywords (optional)
         </label>
         <input
           id="tags"
           type="text"
           placeholder="e.g., arrays, linked-lists, mid-term (comma separated)"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-900 text-white placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.tags}
           onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
           disabled={isLoading}
@@ -273,7 +273,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           type="button"
           onClick={handleCancel}
           disabled={isLoading}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          className="px-6 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-400 bg-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

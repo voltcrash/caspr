@@ -72,11 +72,11 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
                     }`}>
                       {resource.visibility === 'private' ? '🔒 Private' : '🌐 Public'}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-400">
                       Semester {resource.semester}
                     </span>
-                    <span className="text-sm text-gray-500">•</span>
-                    <span className="text-sm text-gray-500">{resource.year_batch}</span>
+                    <span className="text-sm text-gray-400">•</span>
+                    <span className="text-sm text-gray-400">{resource.year_batch}</span>
                   </div>
                 </div>
               </div>

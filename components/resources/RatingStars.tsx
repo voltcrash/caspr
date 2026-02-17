@@ -105,7 +105,7 @@ export default function RatingStars({
                 className={`w-8 h-8 ${
                   star <= (hoverRating || rating)
                     ? 'text-yellow-500'
-                    : 'text-gray-300 dark:text-gray-600'
+                    : 'text-gray-300 dark:text-gray-400'
                 }`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -158,7 +158,7 @@ export default function RatingStars({
                   className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
                   disabled={isSubmitting}
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-xs text-gray-400 dark:text-gray-400 mt-1">
                   {reviewText.length}/1000 characters
                 </p>
               </div>
@@ -190,7 +190,7 @@ export default function RatingStars({
                       setShowReviewInput(false)
                       setReviewText('')
                     }}
-                    className="px-4 py-2 text-gray-300 border border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium"
+                    className="px-4 py-2 text-gray-300 border border-gray-600 rounded-md hover:bg-black dark:hover:bg-gray-700 text-sm font-medium"
                   >
                     Cancel
                   </button>
@@ -206,7 +206,7 @@ export default function RatingStars({
           className={`text-sm ${
             message.includes('error') || message.includes("can't")
               ? 'text-red-600 dark:text-red-400'
-              : 'text-green-600 dark:text-green-400'
+              : 'text-green-400 dark:text-green-400'
           }`}
         >
           {message}
@@ -214,7 +214,7 @@ export default function RatingStars({
       )}
 
       {rating > 0 && !isOwner && !showReviewInput && (
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="text-xs text-gray-400 dark:text-gray-400">
           Your rating: {rating} {rating === 1 ? 'star' : 'stars'}
           {currentReviewText && <span> • Click "Write a review" to edit</span>}
         </p>

@@ -47,9 +47,9 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-8 space-y-6">
+    <form onSubmit={handleSubmit} className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-8 space-y-6">
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-900/30 border border-red-800 text-red-400 px-4 py-3 rounded">
           {error}
         </div>
       )}
@@ -57,14 +57,14 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name */}
         <div className="md:col-span-2">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-400">
             Full Name *
           </label>
           <input
             id="name"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
@@ -72,14 +72,14 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
 
         {/* College */}
         <div className="md:col-span-2">
-          <label htmlFor="college" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="college" className="block text-sm font-medium text-gray-400">
             College/Institution *
           </label>
           <input
             id="college"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.college}
             onChange={(e) => setFormData({ ...formData, college: e.target.value })}
           />
@@ -87,14 +87,14 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
 
         {/* Branch */}
         <div className="md:col-span-2">
-          <label htmlFor="branch" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="branch" className="block text-sm font-medium text-gray-400">
             Branch/Department *
           </label>
           <input
             id="branch"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.branch}
             onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
           />
@@ -102,13 +102,13 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
 
         {/* Year */}
         <div>
-          <label htmlFor="year" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="year" className="block text-sm font-medium text-gray-400">
             Current Year *
           </label>
           <select
             id="year"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.year}
             onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) })}
           >
@@ -123,13 +123,13 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
 
         {/* Semester */}
         <div>
-          <label htmlFor="semester" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="semester" className="block text-sm font-medium text-gray-400">
             Current Semester *
           </label>
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
           >
@@ -143,32 +143,32 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
 
         {/* Profile Picture URL */}
         <div className="md:col-span-2">
-          <label htmlFor="profile_picture_url" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="profile_picture_url" className="block text-sm font-medium text-gray-400">
             Profile Picture URL (optional)
           </label>
           <input
             id="profile_picture_url"
             type="url"
             placeholder="https://example.com/your-photo.jpg"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.profile_picture_url}
             onChange={(e) => setFormData({ ...formData, profile_picture_url: e.target.value })}
           />
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-400">
             Enter a URL to an image you'd like to use as your profile picture
           </p>
         </div>
 
         {/* Bio */}
         <div className="md:col-span-2">
-          <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="bio" className="block text-sm font-medium text-gray-400">
             Bio (optional)
           </label>
           <textarea
             id="bio"
             rows={4}
             placeholder="Tell us about yourself..."
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.bio}
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
           />
@@ -186,7 +186,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
         <button
           type="button"
           onClick={handleCancel}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          className="px-6 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-400 bg-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

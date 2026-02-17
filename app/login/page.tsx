@@ -22,8 +22,10 @@ export default function LoginPage() {
       setError(result.error)
       setIsLoading(false)
     } else if (result?.success) {
-      // Redirect to resources on success
-      window.location.href = '/resources'
+      // Small delay to ensure cookies are set, then redirect
+      setTimeout(() => {
+        window.location.href = '/resources'
+      }, 100)
     }
   }
 

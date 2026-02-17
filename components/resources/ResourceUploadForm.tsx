@@ -142,9 +142,9 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-8 space-y-6">
+    <form onSubmit={handleSubmit} className="bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-8 space-y-6">
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-900/30 border border-red-800 text-red-400 px-4 py-3 rounded">
           {error}
         </div>
       )}
@@ -152,10 +152,10 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       {isLoading && (
         <div className="bg-gray-900 border border-gray-700 px-4 py-3 rounded">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-blue-700">Uploading...</span>
-            <span className="text-blue-700 font-semibold">{uploadProgress}%</span>
+            <span className="text-orange-400">Uploading...</span>
+            <span className="text-orange-400 font-semibold">{uploadProgress}%</span>
           </div>
-          <div className="w-full bg-blue-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-2">
             <div
               className="bg-orange-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
@@ -166,7 +166,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       {/* File Upload */}
       <div>
-        <label htmlFor="file" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="file" className="block text-sm font-medium text-gray-400 mb-2">
           Select File *
         </label>
         <input
@@ -174,15 +174,15 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="file"
           onChange={handleFileChange}
           accept=".pdf,.doc,.docx,.ppt,.pptx,.xlsx,.xls,.txt,.jpg,.jpeg,.png,.gif,.zip,.rar"
-          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-blue-700 hover:file:bg-orange-900/50"
+          className="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-orange-400 hover:file:bg-orange-900/50"
           required
           disabled={isLoading}
         />
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-400">
           Supported: PDF, DOCX, PPT, Images, ZIP (Max 50MB)
         </p>
         {file && (
-          <p className="mt-2 text-sm text-green-600">
+          <p className="mt-2 text-sm text-green-400">
             Selected: {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
           </p>
         )}
@@ -190,7 +190,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       {/* Title */}
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="title" className="block text-sm font-medium text-gray-400">
           Resource Title *
         </label>
         <input
@@ -198,7 +198,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="text"
           required
           placeholder="e.g., Data Structures Complete Notes"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           disabled={isLoading}
@@ -207,14 +207,14 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       {/* Description */}
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="description" className="block text-sm font-medium text-gray-400">
           Description (optional)
         </label>
         <textarea
           id="description"
           rows={3}
           placeholder="Brief description of the resource..."
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           disabled={isLoading}
@@ -224,7 +224,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-400">
             Subject/Course *
           </label>
           <input
@@ -232,7 +232,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             type="text"
             required
             placeholder="e.g., Data Structures"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             disabled={isLoading}
@@ -241,13 +241,13 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
         {/* Semester */}
         <div>
-          <label htmlFor="semester" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="semester" className="block text-sm font-medium text-gray-400">
             Semester *
           </label>
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
             disabled={isLoading}
@@ -262,13 +262,13 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
         {/* Resource Type */}
         <div>
-          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-400">
             Resource Type *
           </label>
           <select
             id="resource_type"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.resource_type}
             onChange={(e) => setFormData({ ...formData, resource_type: e.target.value as ResourceType })}
             disabled={isLoading}
@@ -283,7 +283,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
         {/* Year/Batch */}
         <div>
-          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-400">
             Year/Batch *
           </label>
           <input
@@ -291,7 +291,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             type="text"
             required
             placeholder="e.g., 2023-2024"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
             value={formData.year_batch}
             onChange={(e) => setFormData({ ...formData, year_batch: e.target.value })}
             disabled={isLoading}
@@ -301,11 +301,11 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       {/* Privacy Setting */}
       <div>
-        <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="visibility" className="block text-sm font-medium text-gray-400 mb-2">
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
+          <label className="flex items-start p-4 border-2 border-gray-600 rounded-lg cursor-pointer transition-all hover:bg-gray-800 has-[:checked]:border-orange-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -317,16 +317,16 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-semibold text-gray-900">🌐 Public</span>
-                <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded">Recommended</span>
+                <span className="text-sm font-semibold text-white">🌐 Public</span>
+                <span className="px-2 py-0.5 text-xs font-medium bg-green-900/50 text-green-300 rounded">Recommended</span>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 Anyone from any college can view and download this resource
               </p>
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
+          <label className="flex items-start p-4 border-2 border-gray-600 rounded-lg cursor-pointer transition-all hover:bg-gray-800 has-[:checked]:border-orange-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -338,9 +338,9 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             />
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-semibold text-gray-900">🔒 Private</span>
+                <span className="text-sm font-semibold text-white">🔒 Private</span>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 Only students from your college can view and download this resource
               </p>
             </div>
@@ -350,19 +350,19 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
       {/* Tags */}
       <div>
-        <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="tags" className="block text-sm font-medium text-gray-400">
           Tags/Keywords (optional)
         </label>
         <input
           id="tags"
           type="text"
           placeholder="e.g., arrays, linked-lists, mid-term (comma separated)"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-gray-900 text-white placeholder-gray-500"
           value={formData.tags}
           onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
           disabled={isLoading}
         />
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-400">
           Separate tags with commas. These help others find your resource.
         </p>
       </div>
@@ -380,7 +380,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="button"
           onClick={() => router.back()}
           disabled={isLoading}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          className="px-6 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-300 bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

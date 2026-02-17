@@ -16,9 +16,9 @@ export default async function ProfileEditPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-black py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Edit Profile</h1>
+        <h1 className="text-3xl font-bold text-white mb-8">Edit Profile</h1>
         <ProfileEditForm profile={profile} />
       </div>
     </div>

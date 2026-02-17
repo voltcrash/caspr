@@ -51,19 +51,36 @@ export default async function ResourcesPage({
               </p>
             </div>
             <div className="flex gap-3 items-center">
-              <Link
-                href="/profile"
-                className="px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600 transition-colors"
-              >
-                My Profile
-              </Link>
-              {user && (
-                <Link
-                  href="/resources/upload"
-                  className="px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors"
-                >
-                  Upload Resource
-                </Link>
+              {user ? (
+                <>
+                  <Link
+                    href="/profile"
+                    className="px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600 transition-colors"
+                  >
+                    My Profile
+                  </Link>
+                  <Link
+                    href="/resources/upload"
+                    className="px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors"
+                  >
+                    Upload Resource
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    className="px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600 transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors"
+                  >
+                    Sign Up
+                  </Link>
+                </>
               )}
             </div>
           </div>

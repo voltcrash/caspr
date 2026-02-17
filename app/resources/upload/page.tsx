@@ -10,11 +10,11 @@ export default async function UploadResourcePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-black py-12 px-4">
       <div className="max-w-3xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Upload Resource</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-white">Upload Resource</h1>
+          <p className="mt-2 text-gray-400">
             Share your academic materials with the community
           </p>
         </div>

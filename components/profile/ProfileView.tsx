@@ -76,7 +76,7 @@ export default function ProfileView({ profile, onLogout }: ProfileViewProps) {
             {profile.bio && (
               <div>
                 <h3 className="text-sm font-medium text-gray-400 mb-1">Bio</h3>
-                <p className="text-gray-300">{profile.bio}</p>
+                <p className="text-gray-400">{profile.bio}</p>
               </div>
             )}
 

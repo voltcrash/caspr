@@ -10,7 +10,7 @@ interface ReviewListProps {
 export default function ReviewList({ reviews, currentUserId }: ReviewListProps) {
   if (reviews.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+      <div className="text-center py-8 text-gray-400 dark:text-gray-400">
         <p>No reviews yet. Be the first to review this resource!</p>
       </div>
     )
@@ -84,7 +84,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
                     className={`w-5 h-5 ${
                       star <= review.rating
                         ? 'text-yellow-500'
-                        : 'text-gray-300 dark:text-gray-600'
+                        : 'text-gray-300 dark:text-gray-400'
                     }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -105,7 +105,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
             )}
 
             {/* Review Date */}
-            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-400">
               <span>{formatDate(review.created_at)}</span>
               {isEdited(review.created_at, review.updated_at) && (
                 <>
