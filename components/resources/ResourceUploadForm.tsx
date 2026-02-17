@@ -105,8 +105,8 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       // Parse tags
       const tags = formData.tags
         .split(',')
-        .map(tag => tag.trim())
-        .filter(tag => tag.length > 0)
+        .map((tag: string) => tag.trim())
+        .filter((tag: string) => tag.length > 0)
 
       // Create resource record
       const result = await uploadResource({

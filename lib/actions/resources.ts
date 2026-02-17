@@ -329,13 +329,17 @@ async function addTagsToResource(resourceId: string, tagNames: string[]) {
         .select()
         .single()
 
-      if (createError) {
-        return createError.message
+      if (createError || !newTag) {
+        return createError?.message || 'Failed to create tag'
       }
       tag = newTag
     }
 
     // Link tag to resource
+    if (!tag) {
+      return 'Tag not found'
+    }
+
     const { error: linkError } = await supabase
       .from('resource_tags')
       .insert({
