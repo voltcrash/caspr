@@ -38,7 +38,8 @@ export default function RegisterPage() {
 
     try {
       const { confirmPassword, ...signupData } = formData
-      const result = await signup(signupData)
+      const origin = window.location.origin
+      const result = await signup(signupData, origin)
       if (result?.error) {
         setError(result.error)
       } else if (result?.success) {
