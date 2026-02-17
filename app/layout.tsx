@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   title: "CASPR - Campus Academic Resource Sharing Platform",
   description: "Share and access academic resources with your campus community",
   icons: {
-    icon: '/icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+    ],
     apple: '/apple-icon.png',
   },
 };
