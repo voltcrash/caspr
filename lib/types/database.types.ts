@@ -13,6 +13,8 @@ export type ResourceType =
   | 'project_reports'
   | 'study_material'
 
+export type ResourceVisibility = 'public' | 'private'
+
 export interface Database {
   public: {
     Tables: {
@@ -69,6 +71,7 @@ export interface Database {
           semester: number
           year_batch: string
           resource_type: ResourceType
+          visibility: ResourceVisibility
           file_url: string
           file_name: string
           file_size: number
@@ -87,6 +90,7 @@ export interface Database {
           semester: number
           year_batch: string
           resource_type: ResourceType
+          visibility?: ResourceVisibility
           file_url: string
           file_name: string
           file_size: number
@@ -105,6 +109,7 @@ export interface Database {
           semester?: number
           year_batch?: string
           resource_type?: ResourceType
+          visibility?: ResourceVisibility
           file_url?: string
           file_name?: string
           file_size?: number

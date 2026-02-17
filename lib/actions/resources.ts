@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getUser } from './auth'
-import type { ResourceInsert, ResourceUpdate, ResourceType } from '@/lib/types/database.types'
+import type { ResourceInsert, ResourceUpdate, ResourceType, ResourceVisibility } from '@/lib/types/database.types'
 
 export async function uploadResource(formData: {
   title: string
@@ -13,6 +13,7 @@ export async function uploadResource(formData: {
   semester: number
   year_batch: string
   resource_type: ResourceType
+  visibility?: ResourceVisibility
   file_url: string
   file_name: string
   file_size: number
@@ -35,6 +36,7 @@ export async function uploadResource(formData: {
     semester: formData.semester,
     year_batch: formData.year_batch,
     resource_type: formData.resource_type,
+    visibility: formData.visibility || 'public',
     file_url: formData.file_url,
     file_name: formData.file_name,
     file_size: formData.file_size,
@@ -76,6 +78,7 @@ export async function updateResource(
     semester: number
     year_batch: string
     resource_type: ResourceType
+    visibility?: ResourceVisibility
     tags: string[]
   }
 ) {
@@ -94,6 +97,7 @@ export async function updateResource(
     semester: formData.semester,
     year_batch: formData.year_batch,
     resource_type: formData.resource_type,
+    visibility: formData.visibility,
   }
 
   const { error: updateError } = await supabase

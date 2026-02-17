@@ -47,14 +47,14 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
         <Link
           key={resource.id}
           href={`/resources/${resource.id}`}
-          className="block bg-white rounded-lg shadow hover:shadow-md transition-shadow p-6"
+          className="block bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-gray-600 transition-shadow p-6"
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">{getFileIcon(resource.file_type)}</span>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
                     {resource.title}
                   </h3>
                   <div className="flex items-center gap-2 mt-1">
@@ -64,6 +64,13 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
                       }`}
                     >
                       {RESOURCE_TYPE_LABELS[resource.resource_type]}
+                    </span>
+                    <span className={`px-2 py-1 text-xs font-medium rounded ${
+                      resource.visibility === 'private'
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'bg-green-100 text-green-800'
+                    }`}>
+                      {resource.visibility === 'private' ? '🔒 Private' : '🌐 Public'}
                     </span>
                     <span className="text-sm text-gray-500">
                       Semester {resource.semester}
@@ -75,12 +82,12 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
               </div>
 
               {resource.description && (
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
                   {resource.description}
                 </p>
               )}
 
-              <div className="flex items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
                 <span className="font-medium text-gray-700">{resource.subject}</span>
                 <span>•</span>
                 <span>{formatFileSize(resource.file_size)}</span>

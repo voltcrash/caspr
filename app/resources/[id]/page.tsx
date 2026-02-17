@@ -85,6 +85,13 @@ export default async function ResourceDetailPage({
                     >
                       {RESOURCE_TYPE_LABELS[resource.resource_type]}
                     </span>
+                    <span className={`px-3 py-1 text-sm font-medium rounded ${
+                      resource.visibility === 'private'
+                        ? 'bg-white/20 text-white'
+                        : 'bg-white/20 text-white'
+                    }`}>
+                      {resource.visibility === 'private' ? '🔒 Private - College Only' : '🌐 Public'}
+                    </span>
                     <span className="text-blue-100">•</span>
                     <span className="text-blue-100">Semester {resource.semester}</span>
                     <span className="text-blue-100">•</span>

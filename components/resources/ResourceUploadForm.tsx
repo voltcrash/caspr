@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { uploadFile, uploadResource } from '@/lib/actions/resources'
-import type { ResourceType } from '@/lib/types/database.types'
+import type { ResourceType, ResourceVisibility } from '@/lib/types/database.types'
 
 interface ResourceUploadFormProps {
   userId: string
@@ -44,6 +44,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
     semester: 1,
     year_batch: '',
     resource_type: 'notes' as ResourceType,
+    visibility: 'public' as ResourceVisibility,
     tags: '',
   })
   const [file, setFile] = useState<File | null>(null)
@@ -116,6 +117,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
         semester: formData.semester,
         year_batch: formData.year_batch,
         resource_type: formData.resource_type,
+        visibility: formData.visibility,
         file_url: fileData.url,
         file_name: file.name,
         file_size: file.size,
@@ -294,6 +296,55 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             onChange={(e) => setFormData({ ...formData, year_batch: e.target.value })}
             disabled={isLoading}
           />
+        </div>
+      </div>
+
+      {/* Privacy Setting */}
+      <div>
+        <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 mb-2">
+          Privacy Setting *
+        </label>
+        <div className="space-y-3">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+            <input
+              type="radio"
+              name="visibility"
+              value="public"
+              checked={formData.visibility === 'public'}
+              onChange={(e) => setFormData({ ...formData, visibility: e.target.value as ResourceVisibility })}
+              disabled={isLoading}
+              className="mt-1 mr-3"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-sm font-semibold text-gray-900">🌐 Public</span>
+                <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded">Recommended</span>
+              </div>
+              <p className="text-sm text-gray-600">
+                Anyone from any college can view and download this resource
+              </p>
+            </div>
+          </label>
+
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+            <input
+              type="radio"
+              name="visibility"
+              value="private"
+              checked={formData.visibility === 'private'}
+              onChange={(e) => setFormData({ ...formData, visibility: e.target.value as ResourceVisibility })}
+              disabled={isLoading}
+              className="mt-1 mr-3"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-sm font-semibold text-gray-900">🔒 Private</span>
+              </div>
+              <p className="text-sm text-gray-600">
+                Only students from your college can view and download this resource
+              </p>
+            </div>
+          </label>
         </div>
       </div>
 
