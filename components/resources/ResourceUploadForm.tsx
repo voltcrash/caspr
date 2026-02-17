@@ -19,18 +19,6 @@ const RESOURCE_TYPES: { value: ResourceType; label: string }[] = [
 
 const ALLOWED_FILE_TYPES = [
   'application/pdf',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
-  'application/msword', // .doc
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation', // .pptx
-  'application/vnd.ms-powerpoint', // .ppt
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
-  'application/vnd.ms-excel', // .xls
-  'text/plain',
-  'image/jpeg',
-  'image/png',
-  'image/gif',
-  'application/zip',
-  'application/x-rar-compressed',
 ]
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50MB
@@ -58,7 +46,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
 
     // Validate file type
     if (!ALLOWED_FILE_TYPES.includes(selectedFile.type)) {
-      setError('Invalid file type. Please upload PDF, DOCX, PPT, images, or other supported formats.')
+      setError('Only PDF files are allowed.')
       setFile(null)
       return
     }
@@ -173,13 +161,13 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           id="file"
           type="file"
           onChange={handleFileChange}
-          accept=".pdf,.doc,.docx,.ppt,.pptx,.xlsx,.xls,.txt,.jpg,.jpeg,.png,.gif,.zip,.rar"
+          accept=".pdf"
           className="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-orange-400 hover:file:bg-orange-900/50"
           required
           disabled={isLoading}
         />
         <p className="mt-1 text-xs text-gray-400">
-          Supported: PDF, DOCX, PPT, Images, ZIP (Max 50MB)
+          Only PDF files supported (Max 50MB)
         </p>
         {file && (
           <p className="mt-2 text-sm text-green-400">

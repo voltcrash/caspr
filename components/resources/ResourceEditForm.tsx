@@ -273,7 +273,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           type="button"
           onClick={handleCancel}
           disabled={isLoading}
-          className="px-6 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-400 bg-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          className="px-6 py-2 border border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-400 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

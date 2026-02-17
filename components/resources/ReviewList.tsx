@@ -10,7 +10,7 @@ interface ReviewListProps {
 export default function ReviewList({ reviews, currentUserId }: ReviewListProps) {
   if (reviews.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-400 dark:text-gray-400">
+      <div className="text-center py-8 text-gray-400 ">
         <p>No reviews yet. Be the first to review this resource!</p>
       </div>
     )
@@ -42,14 +42,14 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
         {reviews.map((review: any) => (
           <div
             key={review.id}
-            className="bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            className="bg-gray-900 border border-gray-700 rounded-lg p-4"
           >
             {/* Reviewer Info */}
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-start gap-3">
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-orange-900/50 dark:bg-blue-900 flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-bold text-orange-500 dark:text-blue-300">
+                <div className="w-10 h-10 rounded-full bg-orange-900/50 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-orange-400">
                     {review.profiles?.name?.charAt(0).toUpperCase() || '?'}
                   </span>
                 </div>
@@ -60,7 +60,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
                     <p className="font-semibold text-white">
                       {review.profiles?.name || 'Anonymous'}
                       {review.user_id === currentUserId && (
-                        <span className="ml-2 text-xs font-normal text-orange-500 dark:text-blue-400">
+                        <span className="ml-2 text-xs font-normal text-orange-400">
                           (You)
                         </span>
                       )}
@@ -84,7 +84,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
                     className={`w-5 h-5 ${
                       star <= review.rating
                         ? 'text-yellow-500'
-                        : 'text-gray-300 dark:text-gray-400'
+                        : 'text-gray-300 '
                     }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -105,7 +105,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
             )}
 
             {/* Review Date */}
-            <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-xs text-gray-400 ">
               <span>{formatDate(review.created_at)}</span>
               {isEdited(review.created_at, review.updated_at) && (
                 <>

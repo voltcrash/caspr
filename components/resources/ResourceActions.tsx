@@ -38,13 +38,13 @@ export default function ResourceActions({ resourceId, resource }: ResourceAction
       <div className="flex gap-2">
         <Link
           href={`/resources/${resourceId}/edit`}
-          className="px-4 py-2 text-sm font-medium text-orange-500 bg-white rounded-md hover:bg-gray-900"
+          className="px-4 py-2 text-sm font-medium text-orange-500 bg-gray-800 rounded-md hover:bg-gray-700"
         >
           Edit
         </Link>
         <button
           onClick={() => setShowDeleteConfirm(true)}
-          className="px-4 py-2 text-sm font-medium text-red-600 bg-white rounded-md hover:bg-red-900/30"
+          className="px-4 py-2 text-sm font-medium text-red-600 bg-gray-800 rounded-md hover:bg-red-900/30"
         >
           Delete
         </button>
@@ -53,7 +53,7 @@ export default function ResourceActions({ resourceId, resource }: ResourceAction
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md mx-4">
+          <div className="bg-gray-900 rounded-lg p-6 max-w-md mx-4">
             <h3 className="text-lg font-semibold text-white mb-2">
               Delete Resource?
             </h3>

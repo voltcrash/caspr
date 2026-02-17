@@ -81,7 +81,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
           </label>
           <select
             id="sort"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
             value={currentFilters.sort || 'latest'}
             onChange={(e) => updateFilter('sort', e.target.value)}
           >
@@ -103,7 +103,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               id="search"
               type="text"
               placeholder="Title, subject, description..."
-              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -126,7 +126,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               id="tags"
               type="text"
               placeholder="e.g., algorithms, database"
-              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />
@@ -137,7 +137,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               Go
             </button>
           </div>
-          <p className="text-xs text-gray-400 dark:text-gray-400 mt-1">Separate multiple tags with commas</p>
+          <p className="text-xs text-gray-400  mt-1">Separate multiple tags with commas</p>
         </form>
 
         {/* Resource Type */}
@@ -147,7 +147,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
           </label>
           <select
             id="resource_type"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.resource_type || ''}
             onChange={(e) => updateFilter('resource_type', e.target.value)}
           >
@@ -167,7 +167,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
           </label>
           <select
             id="semester"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.semester || ''}
             onChange={(e) => updateFilter('semester', e.target.value)}
           >
@@ -189,7 +189,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
             id="subject"
             type="text"
             placeholder="e.g., Data Structures"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.subject || ''}
             onChange={(e) => updateFilter('subject', e.target.value)}
           />
@@ -204,7 +204,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
             id="branch"
             type="text"
             placeholder="e.g., Computer Science"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.branch || ''}
             onChange={(e) => updateFilter('branch', e.target.value)}
           />
@@ -219,7 +219,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
             id="year_batch"
             type="text"
             placeholder="e.g., 2023"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.year_batch || ''}
             onChange={(e) => updateFilter('year_batch', e.target.value)}
           />
@@ -232,7 +232,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
           </label>
           <select
             id="visibility"
-            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.visibility || ''}
             onChange={(e) => updateFilter('visibility', e.target.value)}
           >
@@ -246,7 +246,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         {hasFilters && (
           <button
             onClick={clearFilters}
-            className="w-full px-4 py-2 text-sm font-medium text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"
+            className="w-full px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800 rounded-md hover:bg-gray-700"
           >
             Clear All Filters
           </button>

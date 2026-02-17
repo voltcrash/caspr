@@ -468,12 +468,16 @@ export async function rateResource(
   // Upsert rating and review (insert or update)
   const { error } = await supabase
     .from('ratings')
-    .upsert({
-      resource_id: resourceId,
-      user_id: user.id,
-      rating,
-      review_text: reviewText || null,
-    })
+    .upsert(
+      {
+        resource_id: resourceId,
+        user_id: user.id,
+        rating,
+        review_text: reviewText || null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'resource_id,user_id' }
+    )
 
   if (error) {
     return { error: error.message }

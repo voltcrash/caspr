@@ -57,11 +57,11 @@ export default async function ResourceDetailPage({
   }
 
   const RESOURCE_TYPE_COLORS: Record<string, string> = {
-    notes: 'bg-orange-900/50 text-blue-800',
-    question_papers: 'bg-purple-100 text-purple-800',
+    notes: 'bg-orange-900/50 text-orange-300',
+    question_papers: 'bg-purple-900/50 text-purple-300',
     solutions: 'bg-green-900/50 text-green-300',
-    project_reports: 'bg-yellow-100 text-yellow-800',
-    study_material: 'bg-pink-100 text-pink-800',
+    project_reports: 'bg-yellow-900/50 text-yellow-300',
+    study_material: 'bg-pink-900/50 text-pink-300',
   }
 
   return (
@@ -210,13 +210,12 @@ export default async function ResourceDetailPage({
             {/* Download Button */}
             <div className="pt-4">
               <a
-                href={resource.file_url}
-                download
+                href={`${resource.file_url}?download=`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full py-3 px-4 bg-orange-500 text-white text-center font-medium rounded-lg hover:bg-orange-600 transition-colors"
               >
-                Download Resource
+                📄 Download PDF
               </a>
             </div>
           </div>
