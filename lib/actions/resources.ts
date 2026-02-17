@@ -194,15 +194,7 @@ export async function getResources(filters?: {
   // Base query
   let query = supabase
     .from('resources')
-    .select(`
-      *,
-      profiles:user_id (
-        id,
-        name,
-        college,
-        branch
-      )
-    `)
+    .select('*')
 
   // Apply filters
   if (filters?.subject) {
@@ -258,7 +250,23 @@ export async function getResources(filters?: {
     return { data: null, error: error.message }
   }
 
-  // Filter by branch if specified (do this after query since branch is in profiles)
+  // Fetch profiles for all resources
+  if (data && data.length > 0) {
+    const userIds = data.map((r: any) => r.user_id)
+    const { data: profilesData } = await supabase
+      .from('profiles')
+      .select('id, name, college, branch')
+      .in('id', userIds)
+
+    // Map profiles to resources
+    const profilesMap = new Map(profilesData?.map((p: any) => [p.id, p]) || [])
+    data = data.map((resource: any) => ({
+      ...resource,
+      profiles: profilesMap.get(resource.user_id) || null
+    }))
+  }
+
+  // Filter by branch if specified
   if (filters?.branch && data) {
     data = data.filter((resource: any) => 
       resource.profiles?.branch?.toLowerCase().includes(filters.branch!.toLowerCase())
@@ -289,23 +297,20 @@ export async function getResource(resourceId: string) {
 
   const { data, error } = await supabase
     .from('resources')
-    .select(`
-      *,
-      profiles:user_id (
-        id,
-        name,
-        college,
-        branch,
-        semester,
-        year
-      )
-    `)
+    .select('*')
     .eq('id', resourceId)
     .single()
 
   if (error) {
     return { data: null, error: error.message }
   }
+
+  // Get profile separately
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id, name, college, branch, semester, year')
+    .eq('id', data.user_id)
+    .single()
 
   // Get tags for this resource
   const { data: tagsData } = await supabase
@@ -315,7 +320,7 @@ export async function getResource(resourceId: string) {
 
   const tags = tagsData?.map((rt: any) => rt.tags) || []
 
-  return { data: { ...data, tags }, error: null }
+  return { data: { ...data, profiles: profile, tags }, error: null }
 }
 
 export async function incrementDownloadCount(resourceId: string) {
@@ -506,21 +511,7 @@ export async function getResourceReviews(resourceId: string) {
 
   const { data, error } = await supabase
     .from('ratings')
-    .select(`
-      id,
-      rating,
-      review_text,
-      created_at,
-      updated_at,
-      user_id,
-      resource_id,
-      profiles:user_id (
-        id,
-        name,
-        college,
-        branch
-      )
-    `)
+    .select('*')
     .eq('resource_id', resourceId)
     .not('review_text', 'is', null)
     .order('created_at', { ascending: false })
@@ -529,13 +520,25 @@ export async function getResourceReviews(resourceId: string) {
     return { data: null, error: error.message }
   }
 
-  // Transform the data to match RatingWithProfile type
-  const transformedData = data?.map((rating: any) => ({
-    ...rating,
-    profiles: rating.profiles?.[0] || rating.profiles
-  }))
+  // Fetch profiles separately
+  if (data && data.length > 0) {
+    const userIds = data.map((r: any) => r.user_id)
+    const { data: profilesData } = await supabase
+      .from('profiles')
+      .select('id, name, college, branch')
+      .in('id', userIds)
 
-  return { data: transformedData, error: null }
+    // Map profiles to ratings
+    const profilesMap = new Map(profilesData?.map((p: any) => [p.id, p]) || [])
+    const transformedData = data.map((rating: any) => ({
+      ...rating,
+      profiles: profilesMap.get(rating.user_id) || null
+    }))
+
+    return { data: transformedData, error: null }
+  }
+
+  return { data: [], error: null }
 }
 
 export async function deleteReview(resourceId: string) {

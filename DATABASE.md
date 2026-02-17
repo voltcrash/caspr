@@ -83,7 +83,7 @@ CREATE TABLE public.resources (
   id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at timestamp WITH time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at timestamp WITH time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
-  user_id uuid REFERENCES public.profiles ON DELETE CASCADE NOT NULL,
+  user_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
   title text NOT NULL,
   description text,
   subject text NOT NULL,
