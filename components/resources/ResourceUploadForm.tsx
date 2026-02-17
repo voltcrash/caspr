@@ -92,8 +92,13 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       
       setUploadProgress(30)
 
-      // Upload file to Supabase Storage
-      const { data: fileData, error: fileError } = await uploadFile(file, userId, tempResourceId)
+      // Upload file to Supabase Storage via FormData (proper binary transfer)
+      const uploadFormData = new FormData()
+      uploadFormData.append('file', file)
+      uploadFormData.append('userId', userId)
+      uploadFormData.append('resourceId', tempResourceId)
+
+      const { data: fileData, error: fileError } = await uploadFile(uploadFormData)
 
       if (fileError || !fileData) {
         setError(fileError || 'Failed to upload file')

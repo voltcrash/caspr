@@ -342,11 +342,17 @@ export async function incrementViewCount(resourceId: string) {
   })
 }
 
-export async function uploadFile(file: File, userId: string, resourceId: string) {
+export async function uploadFile(formData: FormData) {
   const supabase = await createClient()
 
-  // Create unique file name
-  const fileExt = file.name.split('.').pop()
+  const file = formData.get('file') as File
+  const userId = formData.get('userId') as string
+  const resourceId = formData.get('resourceId') as string
+
+  if (!file || !userId || !resourceId) {
+    return { data: null, error: 'Missing required upload data' }
+  }
+
   const fileName = `${resourceId}_${file.name}`
   const filePath = `${userId}/${fileName}`
 
@@ -355,6 +361,7 @@ export async function uploadFile(file: File, userId: string, resourceId: string)
     .upload(filePath, file, {
       cacheControl: '3600',
       upsert: false,
+      contentType: file.type,
     })
 
   if (error) {
