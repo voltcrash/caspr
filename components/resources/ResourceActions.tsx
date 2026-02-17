@@ -78,7 +78,7 @@ export default function ResourceActions({ resourceId, resource }: ResourceAction
               <button
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={isDeleting}
-                className="flex-1 px-4 py-2 bg-gray-100 text-gray-300 rounded-md hover:bg-gray-200"
+                className="flex-1 px-4 py-2 bg-gray-800 text-gray-300 rounded-md hover:bg-gray-700"
               >
                 Cancel
               </button>

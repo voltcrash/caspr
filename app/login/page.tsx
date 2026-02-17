@@ -33,6 +33,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-black px-4">
       <div className="max-w-md w-full space-y-8">
         <div>
+          <Link href="/" className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">C</span>
+            </div>
+          </Link>
           <h2 className="text-center text-3xl font-bold text-white">
             Sign in to CASPR
           </h2>
