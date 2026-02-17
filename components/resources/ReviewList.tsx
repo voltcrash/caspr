@@ -42,7 +42,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
         {reviews.map((review: any) => (
           <div
             key={review.id}
-            className="bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            className="bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
           >
             {/* Reviewer Info */}
             <div className="flex items-start justify-between mb-3">

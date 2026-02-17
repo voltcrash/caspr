@@ -167,7 +167,7 @@ export default function RatingStars({
                 <button
                   type="submit"
                   disabled={isSubmitting || rating === 0}
-                  className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm font-medium"
+                  className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm font-medium"
                 >
                   {isSubmitting ? 'Submitting...' : currentRating > 0 ? 'Update Review' : 'Submit Review'}
                 </button>

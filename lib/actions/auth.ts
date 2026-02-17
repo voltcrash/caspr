@@ -62,7 +62,7 @@ export async function login(email: string, password: string) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/resources')
+  return { success: true }
 }
 
 export async function logout() {

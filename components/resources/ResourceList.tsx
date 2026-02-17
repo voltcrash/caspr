@@ -47,7 +47,7 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
         <Link
           key={resource.id}
           href={`/resources/${resource.id}`}
-          className="block bg-gray-800 rounded-lg shadow-xl border border-gray-700 hover:border-orange-600 transition-all p-6"
+          className="block bg-gray-900 rounded-lg shadow-xl border border-gray-700 hover:border-orange-500 transition-all p-6"
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">

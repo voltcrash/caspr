@@ -82,7 +82,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
         </div>
       )}
 
-      <div className="bg-gray-800 border border-gray-700 px-4 py-3 rounded">
+      <div className="bg-gray-900 border border-gray-700 px-4 py-3 rounded">
         <p className="text-sm text-blue-700">
           <strong>Note:</strong> You cannot change the uploaded file. To upload a different file, please delete this resource and create a new one.
         </p>
@@ -201,7 +201,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -222,7 +222,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -265,7 +265,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Saving...' : 'Save Changes'}
         </button>

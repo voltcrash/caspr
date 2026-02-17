@@ -150,14 +150,14 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       )}
 
       {isLoading && (
-        <div className="bg-gray-800 border border-gray-700 px-4 py-3 rounded">
+        <div className="bg-gray-900 border border-gray-700 px-4 py-3 rounded">
           <div className="flex items-center justify-between mb-2">
             <span className="text-blue-700">Uploading...</span>
             <span className="text-blue-700 font-semibold">{uploadProgress}%</span>
           </div>
           <div className="w-full bg-blue-200 rounded-full h-2">
             <div
-              className="bg-orange-600 h-2 rounded-full transition-all duration-300"
+              className="bg-orange-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
@@ -174,7 +174,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="file"
           onChange={handleFileChange}
           accept=".pdf,.doc,.docx,.ppt,.pptx,.xlsx,.xls,.txt,.jpg,.jpeg,.png,.gif,.zip,.rar"
-          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-800 file:text-blue-700 hover:file:bg-orange-900/50"
+          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-900 file:text-blue-700 hover:file:bg-orange-900/50"
           required
           disabled={isLoading}
         />
@@ -305,7 +305,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -326,7 +326,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-900">
             <input
               type="radio"
               name="visibility"
@@ -372,7 +372,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
         <button
           type="submit"
           disabled={isLoading || !file}
-          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Uploading...' : 'Upload Resource'}
         </button>

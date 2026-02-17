@@ -70,7 +70,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
   const hasFilters = Object.values(currentFilters).some(v => v !== undefined && v !== '')
 
   return (
-    <div className="bg-gray-800 rounded-lg shadow-xl p-6 space-y-6">
+    <div className="bg-gray-900 rounded-lg shadow-xl p-6 space-y-6">
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Search & Filter</h3>
         
@@ -109,7 +109,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
             />
             <button
               type="submit"
-              className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm"
+              className="px-3 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 text-sm"
             >
               Go
             </button>
@@ -132,7 +132,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
             />
             <button
               type="submit"
-              className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm"
+              className="px-3 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 text-sm"
             >
               Go
             </button>

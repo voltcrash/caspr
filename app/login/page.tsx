@@ -17,20 +17,18 @@ export default function LoginPage() {
     setError('')
     setIsLoading(true)
 
-    try {
-      const result = await login(formData.email, formData.password)
-      if (result?.error) {
-        setError(result.error)
-      }
-    } catch (err) {
-      setError('An unexpected error occurred')
-    } finally {
+    const result = await login(formData.email, formData.password)
+    if (result?.error) {
+      setError(result.error)
       setIsLoading(false)
+    } else if (result?.success) {
+      // Redirect to resources on success
+      window.location.href = '/resources'
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-black px-4">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="text-center text-3xl font-bold text-white">
@@ -41,7 +39,7 @@ export default function LoginPage() {
           </p>
         </div>
         
-        <form className="mt-8 space-y-6 bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-6 bg-gray-900 p-8 rounded-lg shadow-xl border border-gray-700" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-900/30 border border-red-800 text-red-400 px-4 py-3 rounded">
               {error}
@@ -81,7 +79,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>

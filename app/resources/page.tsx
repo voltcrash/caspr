@@ -39,9 +39,9 @@ export default async function ResourcesPage({
   const { data: resources, error } = await getResources(filters)
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="bg-gray-800 shadow-lg border-b border-gray-700">
+      <div className="bg-gray-900 shadow-lg border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
             <div>
@@ -60,7 +60,7 @@ export default async function ResourcesPage({
               {user && (
                 <Link
                   href="/resources/upload"
-                  className="px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700 transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors"
                 >
                   Upload Resource
                 </Link>
@@ -87,7 +87,7 @@ export default async function ResourcesPage({
             )}
 
             {resources && resources.length === 0 && (
-              <div className="bg-gray-800 rounded-lg shadow-xl border border-gray-700 p-12 text-center">
+              <div className="bg-gray-900 rounded-lg shadow-xl border border-gray-700 p-12 text-center">
                 <svg
                   className="mx-auto h-12 w-12 text-gray-500"
                   fill="none"
@@ -110,7 +110,7 @@ export default async function ResourcesPage({
                 {user && (
                   <Link
                     href="/resources/upload"
-                    className="mt-4 inline-block px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700 transition-colors"
+                    className="mt-4 inline-block px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors"
                   >
                     Upload Resource
                   </Link>
