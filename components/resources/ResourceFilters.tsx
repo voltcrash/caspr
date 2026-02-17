@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import type { ResourceType, ResourceVisibility, SortOption } from '@/lib/types/database.types'
 
 interface ResourceFiltersProps {
@@ -38,8 +38,11 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
   const searchParams = useSearchParams()
   const [search, setSearch] = useState(currentFilters.search || '')
   const [tags, setTags] = useState(currentFilters.tags || '')
+  const [subject, setSubject] = useState(currentFilters.subject || '')
+  const [branch, setBranch] = useState(currentFilters.branch || '')
+  const [yearBatch, setYearBatch] = useState(currentFilters.year_batch || '')
 
-  const updateFilter = (key: string, value: string) => {
+  const updateFilter = useCallback((key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
     if (value) {
       params.set(key, value)
@@ -47,21 +50,32 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
       params.delete(key)
     }
     router.push(`/resources?${params.toString()}`)
-  }
+  }, [searchParams, router])
+
+  const applyAllFilters = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString())
+
+    const updates: Record<string, string> = {
+      search, tags, subject, branch, year_batch: yearBatch,
+    }
+    for (const [key, val] of Object.entries(updates)) {
+      if (val) params.set(key, val)
+      else params.delete(key)
+    }
+    router.push(`/resources?${params.toString()}`)
+  }, [searchParams, router, search, tags, subject, branch, yearBatch])
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    updateFilter('search', search)
-  }
-
-  const handleTagsSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    updateFilter('tags', tags)
+    applyAllFilters()
   }
 
   const clearFilters = () => {
     setSearch('')
     setTags('')
+    setSubject('')
+    setBranch('')
+    setYearBatch('')
     router.push('/resources')
   }
 
@@ -71,44 +85,46 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
   const labelClass = "block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5"
 
   return (
-    <div className="space-y-6">
+    <form onSubmit={handleSearchSubmit} className="space-y-5">
       {/* Search */}
       <div>
-        <form onSubmit={handleSearchSubmit}>
-          <div className="relative">
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search resources..."
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-        </form>
+        <div className="relative">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by title, subject, description..."
+            className="w-full pl-10 pr-20 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-orange-500 text-white text-xs font-semibold rounded-md hover:bg-orange-600 transition-colors"
+          >
+            Search
+          </button>
+        </div>
       </div>
 
       {/* Tags */}
       <div>
-        <form onSubmit={handleTagsSubmit}>
-          <label className={labelClass}>Tags</label>
-          <input
-            type="text"
-            placeholder="e.g., algorithms, database"
-            className={inputClass}
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          <p className="text-[11px] text-gray-500 mt-1">Comma-separated</p>
-        </form>
+        <label className={labelClass}>Tags</label>
+        <input
+          type="text"
+          placeholder="e.g., algorithms, database"
+          className={inputClass}
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+        />
+        <p className="text-[11px] text-gray-500 mt-1">Comma-separated, press Search to apply</p>
       </div>
 
       {/* Divider */}
       <div className="border-t border-gray-800" />
 
-      {/* Sort */}
+      {/* Sort - instant */}
       <div>
         <label className={labelClass}>Sort By</label>
         <select
@@ -124,7 +140,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         </select>
       </div>
 
-      {/* Resource Type */}
+      {/* Resource Type - instant */}
       <div>
         <label className={labelClass}>Type</label>
         <select
@@ -141,7 +157,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         </select>
       </div>
 
-      {/* Semester */}
+      {/* Semester - instant */}
       <div>
         <label className={labelClass}>Semester</label>
         <select
@@ -158,27 +174,27 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         </select>
       </div>
 
-      {/* Subject */}
+      {/* Subject - text, requires Search button */}
       <div>
         <label className={labelClass}>Subject</label>
         <input
           type="text"
           placeholder="e.g., Data Structures"
           className={inputClass}
-          value={currentFilters.subject || ''}
-          onChange={(e) => updateFilter('subject', e.target.value)}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
         />
       </div>
 
-      {/* Branch */}
+      {/* Branch - text, requires Search button */}
       <div>
         <label className={labelClass}>Branch</label>
         <input
           type="text"
           placeholder="e.g., Computer Science"
           className={inputClass}
-          value={currentFilters.branch || ''}
-          onChange={(e) => updateFilter('branch', e.target.value)}
+          value={branch}
+          onChange={(e) => setBranch(e.target.value)}
         />
       </div>
 
@@ -189,12 +205,12 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
           type="text"
           placeholder="e.g., 2023-2024"
           className={inputClass}
-          value={currentFilters.year_batch || ''}
-          onChange={(e) => updateFilter('year_batch', e.target.value)}
+          value={yearBatch}
+          onChange={(e) => setYearBatch(e.target.value)}
         />
       </div>
 
-      {/* Visibility */}
+      {/* Visibility - instant */}
       <div>
         <label className={labelClass}>Visibility</label>
         <select
@@ -208,15 +224,24 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         </select>
       </div>
 
+      {/* Apply Filters button for text fields */}
+      <button
+        type="submit"
+        className="w-full px-4 py-2.5 text-sm font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/10"
+      >
+        Apply Filters
+      </button>
+
       {/* Clear Filters */}
       {hasFilters && (
         <button
+          type="button"
           onClick={clearFilters}
-          className="w-full px-4 py-2 text-sm font-medium text-orange-400 bg-orange-500/10 rounded-lg hover:bg-orange-500/20 transition-colors"
+          className="w-full px-4 py-2 text-sm font-medium text-gray-400 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
         >
-          Clear Filters
+          Clear All Filters
         </button>
       )}
-    </div>
+    </form>
   )
 }

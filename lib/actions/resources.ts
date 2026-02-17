@@ -218,7 +218,10 @@ export async function getResources(filters?: {
   }
 
   if (filters?.search) {
-    query = query.or(`title.ilike.%${filters.search}%,description.ilike.%${filters.search}%,subject.ilike.%${filters.search}%`)
+    const term = filters.search.trim()
+    if (term) {
+      query = query.or(`title.ilike.%${term}%,description.ilike.%${term}%,subject.ilike.%${term}%,file_name.ilike.%${term}%`)
+    }
   }
 
   if (filters?.user_id) {
