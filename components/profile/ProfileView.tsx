@@ -18,12 +18,20 @@ export default function ProfileView({ profile, onLogout }: ProfileViewProps) {
       {/* Header with logout */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-        >
-          Logout
-        </button>
+        <div className="flex gap-3">
+          <Link
+            href="/resources"
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          >
+            Browse Resources
+          </Link>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Profile Card */}

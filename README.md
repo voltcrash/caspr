@@ -2,9 +2,9 @@
 
 A Next.js-based platform for students to share and access academic resources like past question papers, class notes, study materials, reference books, project reports, and assignment solutions.
 
-## Features Implemented (Task 1)
+## Features Implemented
 
-### ✅ User Authentication & Profiles
+### ✅ Task 1: User Authentication & Profiles
 
 - **Registration System**: Complete signup flow with email/password authentication
 - **Login System**: Secure login with Supabase authentication
@@ -19,6 +19,20 @@ A Next.js-based platform for students to share and access academic resources lik
   - Bio (optional)
 - **Session Management**: Persistent sessions across browser sessions using Supabase Auth
 - **Profile Management**: Users can view and edit their profile information
+
+### ✅ Task 2: Resource Upload & Management
+
+- **File Upload**: Upload academic resources (PDF, DOCX, PPT, images, ZIP, etc.) up to 50MB
+- **Resource Information**: Complete metadata for each resource:
+  - Title, Subject, Semester, Year/Batch
+  - Resource type (Notes, Question Papers, Solutions, Project Reports, Study Material)
+  - Optional description
+- **Tags/Keywords**: Add searchable tags to resources for better discovery
+- **Browse & Filter**: View all resources with filters by type, semester, subject
+- **Search**: Search resources by title and description
+- **Edit/Delete**: Users can manage their own uploaded resources
+- **Download Tracking**: Track views and downloads for each resource
+- **File Storage**: Secure storage using Supabase Storage with automatic cleanup
 
 ## Tech Stack
 
@@ -37,6 +51,12 @@ caspr/
 │   ├── profile/
 │   │   ├── page.tsx            # Profile view page
 │   │   └── edit/page.tsx       # Profile edit page
+│   ├── resources/
+│   │   ├── page.tsx            # Browse resources
+│   │   ├── upload/page.tsx     # Upload resource
+│   │   └── [id]/
+│   │       ├── page.tsx        # Resource detail
+│   │       └── edit/page.tsx   # Edit resource
 │   ├── layout.tsx              # Root layout with AuthProvider
 │   ├── page.tsx                # Landing page
 │   └── globals.css             # Global styles
@@ -44,13 +64,20 @@ caspr/
 │   ├── profile/
 │   │   ├── ProfileView.tsx     # Profile display component
 │   │   └── ProfileEditForm.tsx # Profile editing form
+│   ├── resources/
+│   │   ├── ResourceUploadForm.tsx  # Upload form
+│   │   ├── ResourceEditForm.tsx    # Edit form
+│   │   ├── ResourceList.tsx        # Resource cards list
+│   │   ├── ResourceFilters.tsx     # Filter sidebar
+│   │   └── ResourceActions.tsx     # Edit/Delete actions
 │   └── providers/
 │       └── AuthProvider.tsx    # Authentication context provider
 ├── lib/
 │   ├── actions/
-│   │   └── auth.ts             # Server actions for authentication
+│   │   ├── auth.ts             # Authentication actions
+│   │   └── resources.ts        # Resource management actions
 │   ├── hooks/
-│   │   └── useAuth.ts          # Authentication hook for client components
+│   │   └── useAuth.ts          # Authentication hook
 │   ├── supabase/
 │   │   ├── client.ts           # Supabase client for browser
 │   │   ├── server.ts           # Supabase client for server
@@ -58,7 +85,8 @@ caspr/
 │   └── types/
 │       └── database.types.ts   # TypeScript database types
 ├── middleware.ts               # Next.js middleware for session refresh
-├── DATABASE_SETUP.md           # Database setup instructions
+├── DATABASE_SETUP.md           # Task 1 database setup
+├── DATABASE_SETUP_TASK2.md     # Task 2 database setup
 └── .env.local                  # Environment variables
 ```
 
@@ -82,11 +110,19 @@ cd caspr
 bun install
 ```
 
-### 3. Set Up Supabase Database
+### 3. Set Up Supabase
 
+#### A. Database Setup
 1. Go to your Supabase project dashboard
 2. Navigate to the SQL Editor
-3. Follow the instructions in `DATABASE_SETUP.md` to create the necessary tables and policies
+3. Run SQL from `DATABASE_SETUP.md` (Task 1: Authentication)
+4. Run SQL from `DATABASE_SETUP_TASK2.md` (Task 2: Resources)
+
+#### B. Storage Setup
+1. Go to Storage in Supabase Dashboard
+2. Create a bucket named `resource-files`
+3. Make it **Public**
+4. Add storage policies (see `DATABASE_SETUP_TASK2.md`)
 
 ### 4. Configure Environment Variables
 
@@ -105,35 +141,34 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
 
+## Quick Start Guides
+
+- **Task 1 Setup**: See `QUICK_START.md`
+- **Task 2 Setup**: See `QUICK_START_TASK2.md`
+
+## What You Can Do Now
+
+### All Users (Including Not Logged In)
+- Browse all uploaded resources
+- View resource details
+- Download files
+- Filter resources by type, semester, subject
+- Search resources by title/description
+
+### Logged In Users
+- All of the above, plus:
+- Create and manage your profile
+- Upload academic resources (PDF, DOCX, PPT, images, etc.)
+- Add tags to your resources
+- Edit your uploaded resources
+- Delete your resources
+- Track views and downloads of your uploads
+
 ## Database Setup
 
-See `DATABASE_SETUP.md` for detailed instructions on setting up the Supabase database schema.
-
-### Quick Setup
-
-Run this SQL in your Supabase SQL Editor:
-
-```sql
--- Create profiles table
-create table public.profiles (
-  id uuid references auth.users on delete cascade not null primary key,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
-  updated_at timestamp with time zone default timezone('utc'::text, now()) not null,
-  email text not null,
-  name text not null,
-  college text not null,
-  branch text not null,
-  semester integer not null check (semester >= 1 and semester <= 12),
-  year integer not null check (year >= 1 and year <= 6),
-  profile_picture_url text,
-  bio text
-);
-
--- Enable RLS
-alter table public.profiles enable row level security;
-
--- Create policies (see DATABASE_SETUP.md for full policies)
-```
+See the following guides for database setup:
+- `DATABASE_SETUP.md` - Task 1: User authentication and profiles
+- `DATABASE_SETUP_TASK2.md` - Task 2: Resources, tags, and storage
 
 ## Usage
 

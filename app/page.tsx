@@ -5,9 +5,9 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const user = await getUser();
 
-  // If user is logged in, redirect to profile
+  // If user is logged in, redirect to resources
   if (user) {
-    redirect("/profile");
+    redirect("/resources");
   }
 
   return (
