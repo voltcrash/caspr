@@ -116,10 +116,10 @@ export default function RatingStars({
           ))}
         </div>
 
-        <div className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-sm text-gray-400">
           {averageRating > 0 ? (
             <>
-              <span className="font-semibold text-gray-900 dark:text-white">
+              <span className="font-semibold text-white">
                 {averageRating.toFixed(1)}
               </span>{' '}
               ({ratingCount} {ratingCount === 1 ? 'review' : 'reviews'})
@@ -136,7 +136,7 @@ export default function RatingStars({
             <button
               type="button"
               onClick={() => setShowReviewInput(true)}
-              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-sm text-orange-500 dark:text-blue-400 hover:underline"
             >
               Write a review
             </button>
@@ -145,7 +145,7 @@ export default function RatingStars({
           {(showReviewInput || rating > 0) && (
             <div className="space-y-3">
               <div>
-                <label htmlFor="reviewText" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="reviewText" className="block text-sm font-medium text-gray-300 mb-2">
                   Your Review (Optional)
                 </label>
                 <textarea
@@ -155,7 +155,7 @@ export default function RatingStars({
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
                   placeholder="Share your experience with this resource... (Optional)"
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                  className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none"
                   disabled={isSubmitting}
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
@@ -167,7 +167,7 @@ export default function RatingStars({
                 <button
                   type="submit"
                   disabled={isSubmitting || rating === 0}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm font-medium"
+                  className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm font-medium"
                 >
                   {isSubmitting ? 'Submitting...' : currentRating > 0 ? 'Update Review' : 'Submit Review'}
                 </button>
@@ -190,7 +190,7 @@ export default function RatingStars({
                       setShowReviewInput(false)
                       setReviewText('')
                     }}
-                    className="px-4 py-2 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium"
+                    className="px-4 py-2 text-gray-300 border border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-sm font-medium"
                   >
                     Cancel
                   </button>

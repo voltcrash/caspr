@@ -82,7 +82,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 px-4 py-3 rounded">
+      <div className="bg-gray-800 border border-gray-700 px-4 py-3 rounded">
         <p className="text-sm text-blue-700">
           <strong>Note:</strong> You cannot change the uploaded file. To upload a different file, please delete this resource and create a new one.
         </p>
@@ -97,7 +97,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           id="title"
           type="text"
           required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           disabled={isLoading}
@@ -112,7 +112,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
         <textarea
           id="description"
           rows={3}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           disabled={isLoading}
@@ -129,7 +129,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             id="subject"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             disabled={isLoading}
@@ -144,7 +144,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
             disabled={isLoading}
@@ -165,7 +165,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           <select
             id="resource_type"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.resource_type}
             onChange={(e) => setFormData({ ...formData, resource_type: e.target.value as ResourceType })}
             disabled={isLoading}
@@ -187,7 +187,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             id="year_batch"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.year_batch}
             onChange={(e) => setFormData({ ...formData, year_batch: e.target.value })}
             disabled={isLoading}
@@ -201,7 +201,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -222,7 +222,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -253,7 +253,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           id="tags"
           type="text"
           placeholder="e.g., arrays, linked-lists, mid-term (comma separated)"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.tags}
           onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
           disabled={isLoading}
@@ -265,7 +265,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Saving...' : 'Save Changes'}
         </button>
@@ -273,7 +273,7 @@ export default function ResourceEditForm({ resource }: ResourceEditFormProps) {
           type="button"
           onClick={handleCancel}
           disabled={isLoading}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

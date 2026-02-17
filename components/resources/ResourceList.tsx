@@ -17,11 +17,11 @@ const RESOURCE_TYPE_LABELS: Record<string, string> = {
 }
 
 const RESOURCE_TYPE_COLORS: Record<string, string> = {
-  notes: 'bg-blue-100 text-blue-800',
-  question_papers: 'bg-purple-100 text-purple-800',
-  solutions: 'bg-green-100 text-green-800',
-  project_reports: 'bg-yellow-100 text-yellow-800',
-  study_material: 'bg-pink-100 text-pink-800',
+  notes: 'bg-orange-900/50 text-orange-300',
+  question_papers: 'bg-purple-900/50 text-purple-300',
+  solutions: 'bg-green-900/50 text-green-300',
+  project_reports: 'bg-yellow-900/50 text-yellow-300',
+  study_material: 'bg-pink-900/50 text-pink-300',
 }
 
 export default function ResourceList({ resources, currentUserId }: ResourceListProps) {
@@ -47,14 +47,14 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
         <Link
           key={resource.id}
           href={`/resources/${resource.id}`}
-          className="block bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-gray-600 transition-shadow p-6"
+          className="block bg-gray-800 rounded-lg shadow-xl border border-gray-700 hover:border-orange-600 transition-all p-6"
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">{getFileIcon(resource.file_type)}</span>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                  <h3 className="text-lg font-semibold text-white hover:text-orange-500 transition-colors">
                     {resource.title}
                   </h3>
                   <div className="flex items-center gap-2 mt-1">
@@ -67,8 +67,8 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
                     </span>
                     <span className={`px-2 py-1 text-xs font-medium rounded ${
                       resource.visibility === 'private'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-green-100 text-green-800'
+                        ? 'bg-orange-900/50 text-orange-300'
+                        : 'bg-green-900/50 text-green-300'
                     }`}>
                       {resource.visibility === 'private' ? '🔒 Private' : '🌐 Public'}
                     </span>
@@ -82,13 +82,13 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
               </div>
 
               {resource.description && (
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                <p className="text-gray-400 text-sm mb-3 line-clamp-2">
                   {resource.description}
                 </p>
               )}
 
-              <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-medium text-gray-700 dark:text-gray-300">{resource.subject}</span>
+              <div className="flex items-center gap-4 text-sm text-gray-400">
+                <span className="font-medium text-gray-300">{resource.subject}</span>
                 <span>•</span>
                 <span>{formatFileSize(resource.file_size)}</span>
                 {resource.average_rating > 0 && (
@@ -109,18 +109,18 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
               </div>
 
               <div className="mt-3 flex items-center gap-2 text-sm">
-                <span className="text-gray-500">Uploaded by</span>
-                <span className="font-medium text-gray-700">
+                <span className="text-gray-400">Uploaded by</span>
+                <span className="font-medium text-gray-300">
                   {resource.profiles?.name || 'Anonymous'}
                 </span>
                 {resource.profiles?.college && (
                   <>
-                    <span className="text-gray-500">from</span>
-                    <span className="text-gray-600">{resource.profiles.college}</span>
+                    <span className="text-gray-400">from</span>
+                    <span className="text-gray-300">{resource.profiles.college}</span>
                   </>
                 )}
-                <span className="text-gray-500">•</span>
-                <span className="text-gray-500">
+                <span className="text-gray-400">•</span>
+                <span className="text-gray-400">
                   {new Date(resource.created_at).toLocaleDateString()}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export default function ResourceList({ resources, currentUserId }: ResourceListP
 
             {currentUserId === resource.user_id && (
               <div className="ml-4">
-                <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded">
+                <span className="px-2 py-1 text-xs font-medium bg-orange-900/50 text-orange-300 rounded">
                   Your Upload
                 </span>
               </div>

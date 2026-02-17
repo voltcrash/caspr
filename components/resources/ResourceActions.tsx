@@ -38,7 +38,7 @@ export default function ResourceActions({ resourceId, resource }: ResourceAction
       <div className="flex gap-2">
         <Link
           href={`/resources/${resourceId}/edit`}
-          className="px-4 py-2 text-sm font-medium text-blue-600 bg-white rounded-md hover:bg-blue-50"
+          className="px-4 py-2 text-sm font-medium text-orange-500 bg-white rounded-md hover:bg-gray-800"
         >
           Edit
         </Link>

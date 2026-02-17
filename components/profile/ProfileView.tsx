@@ -35,9 +35,9 @@ export default function ProfileView({ profile, onLogout }: ProfileViewProps) {
       </div>
 
       {/* Profile Card */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-gray-800 rounded-lg shadow-xl border border-gray-700 overflow-hidden">
         {/* Profile Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-32"></div>
+        <div className="bg-gradient-to-r from-gray-900 to-orange-600 h-32"></div>
         
         <div className="px-6 pb-6">
           {/* Profile Picture */}
@@ -60,7 +60,7 @@ export default function ProfileView({ profile, onLogout }: ProfileViewProps) {
             
             <Link
               href="/profile/edit"
-              className="mt-16 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+              className="mt-16 px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700"
             >
               Edit Profile
             </Link>

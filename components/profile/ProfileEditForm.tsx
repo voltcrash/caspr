@@ -64,7 +64,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
             id="name"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
@@ -79,7 +79,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
             id="college"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.college}
             onChange={(e) => setFormData({ ...formData, college: e.target.value })}
           />
@@ -94,7 +94,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
             id="branch"
             type="text"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.branch}
             onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
           />
@@ -108,7 +108,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
           <select
             id="year"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.year}
             onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) })}
           >
@@ -129,7 +129,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
           >
@@ -150,7 +150,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
             id="profile_picture_url"
             type="url"
             placeholder="https://example.com/your-photo.jpg"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.profile_picture_url}
             onChange={(e) => setFormData({ ...formData, profile_picture_url: e.target.value })}
           />
@@ -168,7 +168,7 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
             id="bio"
             rows={4}
             placeholder="Tell us about yourself..."
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.bio}
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
           />
@@ -179,14 +179,14 @@ export default function ProfileEditForm({ profile }: ProfileEditFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Saving...' : 'Save Changes'}
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

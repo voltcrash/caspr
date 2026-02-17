@@ -70,18 +70,18 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
   const hasFilters = Object.values(currentFilters).some(v => v !== undefined && v !== '')
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-700 p-6 space-y-6">
+    <div className="bg-gray-800 rounded-lg shadow-xl p-6 space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Search & Filter</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Search & Filter</h3>
         
         {/* Sort Options */}
         <div className="mb-6">
-          <label htmlFor="sort" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="sort" className="block text-sm font-medium text-gray-300 mb-2">
             Sort By
           </label>
           <select
             id="sort"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.sort || 'latest'}
             onChange={(e) => updateFilter('sort', e.target.value)}
           >
@@ -95,7 +95,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Search */}
         <form onSubmit={handleSearchSubmit} className="mb-6">
-          <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="search" className="block text-sm font-medium text-gray-300 mb-2">
             Search
           </label>
           <div className="flex gap-2">
@@ -103,13 +103,13 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               id="search"
               type="text"
               placeholder="Title, subject, description..."
-              className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm"
+              className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm"
             >
               Go
             </button>
@@ -118,7 +118,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Tags Search */}
         <form onSubmit={handleTagsSubmit} className="mb-6">
-          <label htmlFor="tags" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="tags" className="block text-sm font-medium text-gray-300 mb-2">
             Search by Tags
           </label>
           <div className="flex gap-2">
@@ -126,13 +126,13 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
               id="tags"
               type="text"
               placeholder="e.g., algorithms, database"
-              className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />
             <button
               type="submit"
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm"
+              className="px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm"
             >
               Go
             </button>
@@ -142,12 +142,12 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Resource Type */}
         <div className="mb-6">
-          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="resource_type" className="block text-sm font-medium text-gray-300 mb-2">
             Resource Type
           </label>
           <select
             id="resource_type"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.resource_type || ''}
             onChange={(e) => updateFilter('resource_type', e.target.value)}
           >
@@ -162,12 +162,12 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Semester */}
         <div className="mb-6">
-          <label htmlFor="semester" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="semester" className="block text-sm font-medium text-gray-300 mb-2">
             Semester
           </label>
           <select
             id="semester"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.semester || ''}
             onChange={(e) => updateFilter('semester', e.target.value)}
           >
@@ -182,14 +182,14 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Subject */}
         <div className="mb-6">
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
             Subject
           </label>
           <input
             id="subject"
             type="text"
             placeholder="e.g., Data Structures"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.subject || ''}
             onChange={(e) => updateFilter('subject', e.target.value)}
           />
@@ -197,14 +197,14 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Branch/Department */}
         <div className="mb-6">
-          <label htmlFor="branch" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="branch" className="block text-sm font-medium text-gray-300 mb-2">
             Branch/Department
           </label>
           <input
             id="branch"
             type="text"
             placeholder="e.g., Computer Science"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.branch || ''}
             onChange={(e) => updateFilter('branch', e.target.value)}
           />
@@ -212,14 +212,14 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Year/Batch */}
         <div className="mb-6">
-          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="year_batch" className="block text-sm font-medium text-gray-300 mb-2">
             Year/Batch
           </label>
           <input
             id="year_batch"
             type="text"
             placeholder="e.g., 2023"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.year_batch || ''}
             onChange={(e) => updateFilter('year_batch', e.target.value)}
           />
@@ -227,12 +227,12 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
 
         {/* Privacy Level */}
         <div className="mb-6">
-          <label htmlFor="visibility" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label htmlFor="visibility" className="block text-sm font-medium text-gray-300 mb-2">
             Privacy Level
           </label>
           <select
             id="visibility"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={currentFilters.visibility || ''}
             onChange={(e) => updateFilter('visibility', e.target.value)}
           >
@@ -246,7 +246,7 @@ export default function ResourceFilters({ currentFilters }: ResourceFiltersProps
         {hasFilters && (
           <button
             onClick={clearFilters}
-            className="w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"
+            className="w-full px-4 py-2 text-sm font-medium text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600"
           >
             Clear All Filters
           </button>

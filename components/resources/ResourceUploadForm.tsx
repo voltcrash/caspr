@@ -150,14 +150,14 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
       )}
 
       {isLoading && (
-        <div className="bg-blue-50 border border-blue-200 px-4 py-3 rounded">
+        <div className="bg-gray-800 border border-gray-700 px-4 py-3 rounded">
           <div className="flex items-center justify-between mb-2">
             <span className="text-blue-700">Uploading...</span>
             <span className="text-blue-700 font-semibold">{uploadProgress}%</span>
           </div>
           <div className="w-full bg-blue-200 rounded-full h-2">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-orange-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
@@ -174,7 +174,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="file"
           onChange={handleFileChange}
           accept=".pdf,.doc,.docx,.ppt,.pptx,.xlsx,.xls,.txt,.jpg,.jpeg,.png,.gif,.zip,.rar"
-          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-800 file:text-blue-700 hover:file:bg-orange-900/50"
           required
           disabled={isLoading}
         />
@@ -198,7 +198,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="text"
           required
           placeholder="e.g., Data Structures Complete Notes"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           disabled={isLoading}
@@ -214,7 +214,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           id="description"
           rows={3}
           placeholder="Brief description of the resource..."
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           disabled={isLoading}
@@ -232,7 +232,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             type="text"
             required
             placeholder="e.g., Data Structures"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             disabled={isLoading}
@@ -247,7 +247,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           <select
             id="semester"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.semester}
             onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
             disabled={isLoading}
@@ -268,7 +268,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           <select
             id="resource_type"
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.resource_type}
             onChange={(e) => setFormData({ ...formData, resource_type: e.target.value as ResourceType })}
             disabled={isLoading}
@@ -291,7 +291,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             type="text"
             required
             placeholder="e.g., 2023-2024"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
             value={formData.year_batch}
             onChange={(e) => setFormData({ ...formData, year_batch: e.target.value })}
             disabled={isLoading}
@@ -305,7 +305,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           Privacy Setting *
         </label>
         <div className="space-y-3">
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -326,7 +326,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
             </div>
           </label>
 
-          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+          <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all hover:bg-gray-50 has-[:checked]:border-blue-500 has-[:checked]:bg-gray-800">
             <input
               type="radio"
               name="visibility"
@@ -357,7 +357,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           id="tags"
           type="text"
           placeholder="e.g., arrays, linked-lists, mid-term (comma separated)"
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
           value={formData.tags}
           onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
           disabled={isLoading}
@@ -372,7 +372,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
         <button
           type="submit"
           disabled={isLoading || !file}
-          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Uploading...' : 'Upload Resource'}
         </button>
@@ -380,7 +380,7 @@ export default function ResourceUploadForm({ userId }: ResourceUploadFormProps) 
           type="button"
           onClick={() => router.back()}
           disabled={isLoading}
-          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="px-6 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
         >
           Cancel
         </button>

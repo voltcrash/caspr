@@ -34,7 +34,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
 
   return (
     <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+      <h3 className="text-lg font-semibold text-white">
         Reviews ({reviews.length})
       </h3>
 
@@ -42,14 +42,14 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
         {reviews.map((review: any) => (
           <div
             key={review.id}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+            className="bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
           >
             {/* Reviewer Info */}
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-start gap-3">
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center flex-shrink-0">
-                  <span className="text-sm font-bold text-blue-600 dark:text-blue-300">
+                <div className="w-10 h-10 rounded-full bg-orange-900/50 dark:bg-blue-900 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-orange-500 dark:text-blue-300">
                     {review.profiles?.name?.charAt(0).toUpperCase() || '?'}
                   </span>
                 </div>
@@ -57,16 +57,16 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
                 {/* Name and Details */}
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold text-gray-900 dark:text-white">
+                    <p className="font-semibold text-white">
                       {review.profiles?.name || 'Anonymous'}
                       {review.user_id === currentUserId && (
-                        <span className="ml-2 text-xs font-normal text-blue-600 dark:text-blue-400">
+                        <span className="ml-2 text-xs font-normal text-orange-500 dark:text-blue-400">
                           (You)
                         </span>
                       )}
                     </p>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     {review.profiles?.branch && review.profiles?.college && (
                       <>
                         {review.profiles.branch} • {review.profiles.college}
@@ -98,7 +98,7 @@ export default function ReviewList({ reviews, currentUserId }: ReviewListProps) 
             {/* Review Text */}
             {review.review_text && (
               <div className="mb-3">
-                <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                <p className="text-gray-300 whitespace-pre-wrap">
                   {review.review_text}
                 </p>
               </div>

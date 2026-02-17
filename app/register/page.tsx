@@ -53,26 +53,26 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-12">
       <div className="max-w-2xl w-full space-y-8">
         <div>
-          <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-center text-3xl font-bold text-white">
             Create your CASPR account
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-center text-sm text-gray-400">
             Join the Campus Academic Resource Sharing Platform
           </p>
         </div>
         
-        <form className="mt-8 space-y-6 bg-white dark:bg-gray-800 p-8 rounded-lg shadow" onSubmit={handleSubmit}>
+        <form className="mt-8 space-y-6 bg-gray-800 p-8 rounded-lg shadow" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded">
+            <div className="bg-red-900/30 border border-red-800 text-red-400 px-4 py-3 rounded">
               {error}
             </div>
           )}
 
           {success && (
-            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 px-4 py-3 rounded">
+            <div className="bg-green-900/30 border border-green-800 text-green-400 px-4 py-3 rounded">
               <p className="font-semibold">{success}</p>
               <p className="text-sm mt-1">Click the link in your email to complete registration.</p>
             </div>
@@ -81,14 +81,14 @@ export default function RegisterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Email */}
             <div className="md:col-span-2">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                 Email address *
               </label>
               <input
                 id="email"
                 type="email"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
@@ -96,14 +96,14 @@ export default function RegisterPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
                 Password *
               </label>
               <input
                 id="password"
                 type="password"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
@@ -111,14 +111,14 @@ export default function RegisterPage() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300">
                 Confirm Password *
               </label>
               <input
                 id="confirmPassword"
                 type="password"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               />
@@ -126,14 +126,14 @@ export default function RegisterPage() {
 
             {/* Name */}
             <div className="md:col-span-2">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300">
                 Full Name *
               </label>
               <input
                 id="name"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
@@ -141,14 +141,14 @@ export default function RegisterPage() {
 
             {/* College */}
             <div className="md:col-span-2">
-              <label htmlFor="college" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="college" className="block text-sm font-medium text-gray-300">
                 College/Institution *
               </label>
               <input
                 id="college"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.college}
                 onChange={(e) => setFormData({ ...formData, college: e.target.value })}
               />
@@ -156,7 +156,7 @@ export default function RegisterPage() {
 
             {/* Branch */}
             <div className="md:col-span-2">
-              <label htmlFor="branch" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="branch" className="block text-sm font-medium text-gray-300">
                 Branch/Department *
               </label>
               <input
@@ -164,7 +164,7 @@ export default function RegisterPage() {
                 type="text"
                 required
                 placeholder="e.g., Computer Science Engineering"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.branch}
                 onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
               />
@@ -172,13 +172,13 @@ export default function RegisterPage() {
 
             {/* Year */}
             <div>
-              <label htmlFor="year" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="year" className="block text-sm font-medium text-gray-300">
                 Current Year *
               </label>
               <select
                 id="year"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.year}
                 onChange={(e) => setFormData({ ...formData, year: parseInt(e.target.value) })}
               >
@@ -193,13 +193,13 @@ export default function RegisterPage() {
 
             {/* Semester */}
             <div>
-              <label htmlFor="semester" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label htmlFor="semester" className="block text-sm font-medium text-gray-300">
                 Current Semester *
               </label>
               <select
                 id="semester"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white dark:bg-gray-700 text-white"
                 value={formData.semester}
                 onChange={(e) => setFormData({ ...formData, semester: parseInt(e.target.value) })}
               >
@@ -215,14 +215,14 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Creating account...' : 'Create account'}
           </button>
 
           <div className="text-center text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Already have an account? </span>
-            <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+            <span className="text-gray-400">Already have an account? </span>
+            <Link href="/login" className="font-medium text-orange-500 hover:text-orange-500">
               Sign in here
             </Link>
           </div>

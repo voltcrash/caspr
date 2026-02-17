@@ -57,7 +57,7 @@ export default async function ResourceDetailPage({
   }
 
   const RESOURCE_TYPE_COLORS: Record<string, string> = {
-    notes: 'bg-blue-100 text-blue-800',
+    notes: 'bg-orange-900/50 text-blue-800',
     question_papers: 'bg-purple-100 text-purple-800',
     solutions: 'bg-green-100 text-green-800',
     project_reports: 'bg-yellow-100 text-yellow-800',
@@ -81,7 +81,7 @@ export default async function ResourceDetailPage({
         {/* Resource Card */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-6">
+          <div className="bg-gradient-to-r from-gray-9000 to-blue-600 px-8 py-6">
             <div className="flex items-start justify-between">
               <div className="flex items-start gap-4 flex-1">
                 <span className="text-5xl">{getFileIcon(resource.file_type)}</span>
@@ -190,8 +190,8 @@ export default async function ResourceDetailPage({
             <div className="border-t pt-6">
               <h3 className="text-sm font-medium text-gray-500 mb-3">Uploaded By</h3>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                  <span className="text-xl font-bold text-blue-600">
+                <div className="w-12 h-12 rounded-full bg-orange-900/50 flex items-center justify-center">
+                  <span className="text-xl font-bold text-orange-500">
                     {resource.profiles?.name?.charAt(0).toUpperCase()}
                   </span>
                 </div>
@@ -214,7 +214,7 @@ export default async function ResourceDetailPage({
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 px-4 bg-blue-600 text-white text-center font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                className="block w-full py-3 px-4 bg-orange-600 text-white text-center font-medium rounded-lg hover:bg-orange-700 transition-colors"
               >
                 Download Resource
               </a>
