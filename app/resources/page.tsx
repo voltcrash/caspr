@@ -9,7 +9,12 @@ interface SearchParams {
   subject?: string
   semester?: string
   resource_type?: string
+  branch?: string
+  year_batch?: string
+  visibility?: string
   search?: string
+  tags?: string
+  sort?: string
 }
 
 export default async function ResourcesPage({
@@ -24,7 +29,12 @@ export default async function ResourcesPage({
     subject: params.subject,
     semester: params.semester ? parseInt(params.semester) : undefined,
     resource_type: params.resource_type as any,
+    branch: params.branch,
+    year_batch: params.year_batch,
+    visibility: params.visibility as any,
     search: params.search,
+    tags: params.tags,
+    sort: params.sort as any,
   }
 
   const { data: resources, error } = await getResources(filters)

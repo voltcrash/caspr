@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { getUser } from './auth'
-import type { ResourceInsert, ResourceUpdate, ResourceType, ResourceVisibility } from '@/lib/types/database.types'
+import type { ResourceInsert, ResourceUpdate, ResourceType, ResourceVisibility, SortOption } from '@/lib/types/database.types'
 
 export async function uploadResource(formData: {
   title: string
@@ -180,11 +180,18 @@ export async function getResources(filters?: {
   subject?: string
   semester?: number
   resource_type?: ResourceType
+  branch?: string
+  year_batch?: string
+  visibility?: ResourceVisibility
   search?: string
+  tags?: string
+  sort?: SortOption
   user_id?: string
 }) {
   const supabase = await createClient()
+  const user = await getUser()
 
+  // Base query
   let query = supabase
     .from('resources')
     .select(`
@@ -196,8 +203,8 @@ export async function getResources(filters?: {
         branch
       )
     `)
-    .order('created_at', { ascending: false })
 
+  // Apply filters
   if (filters?.subject) {
     query = query.ilike('subject', `%${filters.subject}%`)
   }
@@ -210,18 +217,68 @@ export async function getResources(filters?: {
     query = query.eq('resource_type', filters.resource_type)
   }
 
+  if (filters?.year_batch) {
+    query = query.ilike('year_batch', `%${filters.year_batch}%`)
+  }
+
+  if (filters?.visibility) {
+    query = query.eq('visibility', filters.visibility)
+  }
+
   if (filters?.search) {
-    query = query.or(`title.ilike.%${filters.search}%,description.ilike.%${filters.search}%`)
+    query = query.or(`title.ilike.%${filters.search}%,description.ilike.%${filters.search}%,subject.ilike.%${filters.search}%`)
   }
 
   if (filters?.user_id) {
     query = query.eq('user_id', filters.user_id)
   }
 
-  const { data, error } = await query
+  // Apply sorting
+  const sortOption = filters?.sort || 'latest'
+  switch (sortOption) {
+    case 'latest':
+      query = query.order('created_at', { ascending: false })
+      break
+    case 'popular':
+      query = query.order('download_count', { ascending: false })
+      break
+    case 'rated':
+      query = query.order('average_rating', { ascending: false }).order('rating_count', { ascending: false })
+      break
+    case 'most_viewed':
+      query = query.order('view_count', { ascending: false })
+      break
+    default:
+      query = query.order('created_at', { ascending: false })
+  }
+
+  let { data, error } = await query
 
   if (error) {
     return { data: null, error: error.message }
+  }
+
+  // Filter by branch if specified (do this after query since branch is in profiles)
+  if (filters?.branch && data) {
+    data = data.filter((resource: any) => 
+      resource.profiles?.branch?.toLowerCase().includes(filters.branch!.toLowerCase())
+    )
+  }
+
+  // Filter by tags if specified (requires separate query)
+  if (filters?.tags && data) {
+    const tagNames = filters.tags.split(',').map((t: string) => t.trim().toLowerCase())
+    
+    // Get resource IDs that have any of the specified tags
+    const { data: taggedResources } = await supabase
+      .from('resource_tags')
+      .select('resource_id, tags!inner(name)')
+      .in('tags.name', tagNames)
+
+    if (taggedResources) {
+      const taggedResourceIds = new Set(taggedResources.map((tr: any) => tr.resource_id))
+      data = data.filter((resource: any) => taggedResourceIds.has(resource.id))
+    }
   }
 
   return { data, error: null }
@@ -381,6 +438,59 @@ export async function searchTags(query: string) {
 
   if (error) {
     return { data: null, error: error.message }
+  }
+
+  return { data, error: null }
+}
+
+// Rating functions
+export async function rateResource(resourceId: string, rating: number) {
+  const supabase = await createClient()
+  const user = await getUser()
+
+  if (!user) {
+    return { error: 'Not authenticated' }
+  }
+
+  if (rating < 1 || rating > 5) {
+    return { error: 'Rating must be between 1 and 5' }
+  }
+
+  // Upsert rating (insert or update)
+  const { error } = await supabase
+    .from('ratings')
+    .upsert({
+      resource_id: resourceId,
+      user_id: user.id,
+      rating,
+    })
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  // Trigger will automatically update average_rating
+  revalidatePath(`/resources/${resourceId}`)
+  return { success: true }
+}
+
+export async function getUserRating(resourceId: string) {
+  const supabase = await createClient()
+  const user = await getUser()
+
+  if (!user) {
+    return { data: null, error: null }
+  }
+
+  const { data, error } = await supabase
+    .from('ratings')
+    .select('rating')
+    .eq('resource_id', resourceId)
+    .eq('user_id', user.id)
+    .single()
+
+  if (error) {
+    return { data: null, error: null }
   }
 
   return { data, error: null }

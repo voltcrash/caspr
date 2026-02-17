@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { getUser } from '@/lib/actions/auth'
-import { getResource, incrementViewCount } from '@/lib/actions/resources'
+import { getResource, incrementViewCount, getUserRating } from '@/lib/actions/resources'
 import ResourceActions from '@/components/resources/ResourceActions'
+import RatingStars from '@/components/resources/RatingStars'
 
 export default async function ResourceDetailPage({
   params,
@@ -19,6 +20,10 @@ export default async function ResourceDetailPage({
 
   // Increment view count
   await incrementViewCount(id)
+
+  // Get user's rating if authenticated
+  const { data: userRatingData } = await getUserRating(id)
+  const userRating = userRatingData?.rating || 0
 
   const isOwner = user?.id === resource.user_id
 
@@ -153,6 +158,18 @@ export default async function ResourceDetailPage({
                 </div>
               </div>
             )}
+
+            {/* Rating */}
+            <div className="border-t pt-6">
+              <h3 className="text-sm font-medium text-gray-500 mb-3">Rate this Resource</h3>
+              <RatingStars
+                resourceId={resource.id}
+                currentRating={userRating}
+                averageRating={resource.average_rating}
+                ratingCount={resource.rating_count}
+                isOwner={isOwner}
+              />
+            </div>
 
             {/* Uploader Info */}
             <div className="border-t pt-6">

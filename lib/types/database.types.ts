@@ -15,6 +15,8 @@ export type ResourceType =
 
 export type ResourceVisibility = 'public' | 'private'
 
+export type SortOption = 'latest' | 'popular' | 'rated' | 'most_viewed'
+
 export interface Database {
   public: {
     Tables: {
@@ -78,6 +80,8 @@ export interface Database {
           file_type: string
           download_count: number
           view_count: number
+          average_rating: number
+          rating_count: number
         }
         Insert: {
           id?: string
@@ -97,6 +101,8 @@ export interface Database {
           file_type: string
           download_count?: number
           view_count?: number
+          average_rating?: number
+          rating_count?: number
         }
         Update: {
           id?: string
@@ -116,6 +122,34 @@ export interface Database {
           file_type?: string
           download_count?: number
           view_count?: number
+          average_rating?: number
+          rating_count?: number
+        }
+      }
+      ratings: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          resource_id: string
+          user_id: string
+          rating: number
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          resource_id: string
+          user_id: string
+          rating: number
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          resource_id?: string
+          user_id?: string
+          rating?: number
         }
       }
       tags: {
@@ -171,6 +205,10 @@ export type TagUpdate = Database['public']['Tables']['tags']['Update']
 export type ResourceTag = Database['public']['Tables']['resource_tags']['Row']
 export type ResourceTagInsert = Database['public']['Tables']['resource_tags']['Insert']
 export type ResourceTagUpdate = Database['public']['Tables']['resource_tags']['Update']
+
+export type Rating = Database['public']['Tables']['ratings']['Row']
+export type RatingInsert = Database['public']['Tables']['ratings']['Insert']
+export type RatingUpdate = Database['public']['Tables']['ratings']['Update']
 
 // Extended types with relations
 export interface ResourceWithProfile extends Resource {

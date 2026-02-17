@@ -34,6 +34,41 @@ A Next.js-based platform for students to share and access academic resources lik
 - **Download Tracking**: Track views and downloads for each resource
 - **File Storage**: Secure storage using Supabase Storage with automatic cleanup
 
+### ✅ Task 3: Access Control & Privacy + Dark Mode
+
+- **Private Access**: Resources marked 'Private' can only be accessed by users from the SAME college/institution
+- **Public Access**: Resources marked 'Public' can be accessed by users from ANY college/institution
+- **Default Setting**: Allow uploader to choose privacy level during upload
+- **Access Verification**: System verifies user's college before granting access to private resources
+- **Visual Indicators**: Clear badges show which resources are Private vs Public
+- **Dark Mode**: Complete dark theme with toggle button and localStorage persistence
+- **Theme Toggle**: Smooth transition between light and dark modes
+
+### ✅ Task 4: Search & Filter System
+
+- **Advanced Search**: Search by title, subject, description, and tags
+- **Filter Options**: 
+  - Subject/Course (text search)
+  - Semester (1-8)
+  - Resource type (Notes, Question Papers, etc.)
+  - Branch/Department (from uploader's profile)
+  - Year/Batch (e.g., 2023, 2024)
+  - Privacy level (Public/Private)
+- **Sort Options**: 
+  - Latest uploads (most recent first)
+  - Highest rated (best average ratings)
+  - Most popular (highest download counts)
+  - Most viewed (highest view counts)
+- **Tag Search**: Search resources by comma-separated tags
+- **Combined Filters**: All filters work together seamlessly
+- **Rating System**: 
+  - 5-star rating system for resources
+  - Average rating and rating count display
+  - Users can rate and update ratings
+  - Resource owners cannot rate their own resources
+  - Automatic calculation of average ratings
+- **Performance**: Optimized with 9 database indexes for fast queries
+
 ## Tech Stack
 
 - **Frontend**: Next.js 16.1.6 with App Router, TypeScript, React 19
@@ -68,10 +103,14 @@ caspr/
 │   │   ├── ResourceUploadForm.tsx  # Upload form
 │   │   ├── ResourceEditForm.tsx    # Edit form
 │   │   ├── ResourceList.tsx        # Resource cards list
-│   │   ├── ResourceFilters.tsx     # Filter sidebar
-│   │   └── ResourceActions.tsx     # Edit/Delete actions
+│   │   ├── ResourceFilters.tsx     # Advanced filter sidebar
+│   │   ├── ResourceActions.tsx     # Edit/Delete actions
+│   │   └── RatingStars.tsx         # Star rating component
+│   ├── ui/
+│   │   └── ThemeToggle.tsx     # Dark mode toggle button
 │   └── providers/
-│       └── AuthProvider.tsx    # Authentication context provider
+│       ├── AuthProvider.tsx    # Authentication context provider
+│       └── ThemeProvider.tsx   # Theme context provider
 ├── lib/
 │   ├── actions/
 │   │   ├── auth.ts             # Authentication actions
@@ -84,9 +123,11 @@ caspr/
 │   │   └── middleware.ts       # Supabase middleware utilities
 │   └── types/
 │       └── database.types.ts   # TypeScript database types
-├── middleware.ts               # Next.js middleware for session refresh
+├── proxy.ts                    # Next.js 16 proxy for session refresh
 ├── DATABASE_SETUP.md           # Task 1 database setup
 ├── DATABASE_SETUP_TASK2.md     # Task 2 database setup
+├── DATABASE_SETUP_TASK3.md     # Task 3 database setup
+├── DATABASE_SETUP_TASK4.md     # Task 4 database setup
 └── .env.local                  # Environment variables
 ```
 
@@ -117,6 +158,8 @@ bun install
 2. Navigate to the SQL Editor
 3. Run SQL from `DATABASE_SETUP.md` (Task 1: Authentication)
 4. Run SQL from `DATABASE_SETUP_TASK2.md` (Task 2: Resources)
+5. Run SQL from `DATABASE_SETUP_TASK3.md` (Task 3: Privacy & Access Control)
+6. Run SQL from `DATABASE_SETUP_TASK4.md` (Task 4: Ratings & Indexes)
 
 #### B. Storage Setup
 1. Go to Storage in Supabase Dashboard
@@ -143,32 +186,49 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## Quick Start Guides
 
-- **Task 1 Setup**: See `QUICK_START.md`
-- **Task 2 Setup**: See `QUICK_START_TASK2.md`
+- **Task 1 Setup**: See `QUICK_START.md` (Authentication & Profiles)
+- **Task 2 Setup**: See `QUICK_START_TASK2.md` (Resources & Upload)
+- **Task 3 Setup**: See `QUICK_START_TASK3.md` (Privacy & Dark Mode)
+- **Task 4 Setup**: See `QUICK_START_TASK4.md` (Search, Filters & Ratings)
 
 ## What You Can Do Now
 
 ### All Users (Including Not Logged In)
-- Browse all uploaded resources
+- Browse all public resources
 - View resource details
 - Download files
-- Filter resources by type, semester, subject
-- Search resources by title/description
+- **Advanced Search**: Search by title, subject, description, or tags
+- **Comprehensive Filters**: Filter by:
+  - Resource type (Notes, Question Papers, etc.)
+  - Semester (1-8)
+  - Subject/Course
+  - Branch/Department
+  - Year/Batch
+  - Privacy level (Public/Private)
+- **Sort Options**: Sort by latest, highest rated, most popular, or most viewed
+- View ratings and average scores
+- Toggle between light and dark mode
 
 ### Logged In Users
 - All of the above, plus:
 - Create and manage your profile
 - Upload academic resources (PDF, DOCX, PPT, images, etc.)
-- Add tags to your resources
-- Edit your uploaded resources
+- **Choose privacy level**: Mark resources as Public or Private (college-only)
+- Add searchable tags to your resources
+- Edit your uploaded resources (including privacy settings)
 - Delete your resources
+- **Rate resources**: Give 1-5 star ratings to other users' resources
+- Update your ratings anytime
 - Track views and downloads of your uploads
+- Access private resources from your own college
 
 ## Database Setup
 
 See the following guides for database setup:
 - `DATABASE_SETUP.md` - Task 1: User authentication and profiles
 - `DATABASE_SETUP_TASK2.md` - Task 2: Resources, tags, and storage
+- `DATABASE_SETUP_TASK3.md` - Task 3: Privacy settings and access control
+- `DATABASE_SETUP_TASK4.md` - Task 4: Rating system and search indexes
 
 ## Usage
 
@@ -233,14 +293,22 @@ See the following guides for database setup:
 - Users can only insert/update their own profile
 - Implemented at the database level in Supabase
 
-## Next Steps (Future Tasks)
+## Completed Features
 
-- Resource upload and management
-- Search and filtering
-- Rating system
-- File storage integration
-- Categories and tags
-- User statistics and recognition points
+✅ **Task 1**: User authentication and profile management  
+✅ **Task 2**: Resource upload, editing, and management  
+✅ **Task 3**: Privacy settings and dark mode theme  
+✅ **Task 4**: Advanced search, filters, sorting, and rating system  
+
+## Potential Future Enhancements
+
+- User statistics dashboard
+- Recognition points and badges
+- Resource collections/playlists
+- Comments and discussions on resources
+- Notification system
+- Advanced analytics
+- Mobile app
 
 ## Development
 
