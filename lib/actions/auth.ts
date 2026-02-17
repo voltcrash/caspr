@@ -3,11 +3,9 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import type { ProfileInsert } from '@/lib/types/database.types'
 
-export async function signup(formData: {
+export async function signupWithOTP(formData: {
   email: string
-  password: string
   name: string
   college: string
   branch: string
@@ -16,57 +14,38 @@ export async function signup(formData: {
 }) {
   const supabase = await createClient()
 
-  // Sign up the user
-  const { data: authData, error: authError } = await supabase.auth.signUp({
+  const { error } = await supabase.auth.signInWithOtp({
     email: formData.email,
-    password: formData.password,
-  })
-
-  if (authError) {
-    return { error: authError.message }
-  }
-
-  if (!authData.user) {
-    return { error: 'Failed to create user' }
-  }
-
-  // Create the user profile
-  const profile: ProfileInsert = {
-    id: authData.user.id,
-    email: formData.email,
-    name: formData.name,
-    college: formData.college,
-    branch: formData.branch,
-    semester: formData.semester,
-    year: formData.year,
-  }
-
-  const { error: profileError } = await supabase
-    .from('profiles')
-    .insert(profile)
-
-  if (profileError) {
-    return { error: profileError.message }
-  }
-
-  revalidatePath('/', 'layout')
-  redirect('/profile')
-}
-
-export async function login(formData: { email: string; password: string }) {
-  const supabase = await createClient()
-
-  const { error } = await supabase.auth.signInWithPassword({
-    email: formData.email,
-    password: formData.password,
+    options: {
+      data: {
+        name: formData.name,
+        college: formData.college,
+        branch: formData.branch,
+        semester: formData.semester,
+        year: formData.year,
+      }
+    }
   })
 
   if (error) {
     return { error: error.message }
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/profile')
+  return { success: true, message: 'Check your email for the magic link!' }
+}
+
+export async function loginWithOTP(email: string) {
+  const supabase = await createClient()
+
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+  })
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  return { success: true, message: 'Check your email for the magic link!' }
 }
 
 export async function logout() {

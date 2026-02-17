@@ -6,8 +6,8 @@ A Next.js-based platform for students to share and access academic resources lik
 
 ### ✅ Task 1: User Authentication & Profiles
 
-- **Registration System**: Complete signup flow with email/password authentication
-- **Login System**: Secure login with Supabase authentication
+- **Registration System**: Email OTP (magic link) authentication - no passwords needed!
+- **Login System**: Magic link sent to email for secure, passwordless authentication
 - **User Profiles**: Each user has a comprehensive profile containing:
   - Name
   - Email
@@ -143,11 +143,7 @@ caspr/
 │   └── types/
 │       └── database.types.ts   # TypeScript database types
 ├── proxy.ts                    # Next.js 16 proxy for session refresh
-├── DATABASE_SETUP.md           # Task 1 database setup
-├── DATABASE_SETUP_TASK2.md     # Task 2 database setup
-├── DATABASE_SETUP_TASK3.md     # Task 3 database setup
-├── DATABASE_SETUP_TASK4.md     # Task 4 database setup
-├── DATABASE_SETUP_TASK5.md     # Task 5 database setup
+├── DATABASE.md                 # Complete database setup SQL
 └── .env.local                  # Environment variables
 ```
 
@@ -176,17 +172,7 @@ bun install
 #### A. Database Setup
 1. Go to your Supabase project dashboard
 2. Navigate to the SQL Editor
-3. Run SQL from `DATABASE_SETUP.md` (Task 1: Authentication)
-4. Run SQL from `DATABASE_SETUP_TASK2.md` (Task 2: Resources)
-5. Run SQL from `DATABASE_SETUP_TASK3.md` (Task 3: Privacy & Access Control)
-6. Run SQL from `DATABASE_SETUP_TASK4.md` (Task 4: Ratings & Indexes)
-7. Run SQL from `DATABASE_SETUP_TASK5.md` (Task 5: Review Text)
-
-#### B. Storage Setup
-1. Go to Storage in Supabase Dashboard
-2. Create a bucket named `resource-files`
-3. Make it **Public**
-4. Add storage policies (see `DATABASE_SETUP_TASK2.md`)
+3. Run all SQL commands from `DATABASE.md` in order
 
 ### 4. Configure Environment Variables
 
@@ -205,13 +191,9 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-## Quick Start Guides
+## Database Setup
 
-- **Task 1 Setup**: See `QUICK_START.md` (Authentication & Profiles)
-- **Task 2 Setup**: See `QUICK_START_TASK2.md` (Resources & Upload)
-- **Task 3 Setup**: See `QUICK_START_TASK3.md` (Privacy & Dark Mode)
-- **Task 4 Setup**: See `QUICK_START_TASK4.md` (Search, Filters & Ratings)
-- **Task 5 Setup**: See `QUICK_START_TASK5.md` (Reviews & Feedback)
+See `DATABASE.md` for complete SQL setup commands.
 
 ## What You Can Do Now
 
@@ -248,14 +230,6 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 - Track views and downloads of your uploads
 - Access private resources from your own college
 
-## Database Setup
-
-See the following guides for database setup:
-- `DATABASE_SETUP.md` - Task 1: User authentication and profiles
-- `DATABASE_SETUP_TASK2.md` - Task 2: Resources, tags, and storage
-- `DATABASE_SETUP_TASK3.md` - Task 3: Privacy settings and access control
-- `DATABASE_SETUP_TASK4.md` - Task 4: Rating system and search indexes
-- `DATABASE_SETUP_TASK5.md` - Task 5: Review text and display
 
 ## Usage
 
