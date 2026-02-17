@@ -29,27 +29,27 @@ CREATE POLICY "Profiles are viewable by everyone" ON profiles FOR SELECT USING (
 CREATE POLICY "Users can insert their own profile" ON profiles FOR INSERT WITH CHECK (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
 
--- Auto-create profile on signup (handles OTP signup with metadata)
+-- Auto-create profile on signup (with metadata from signup)
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
   INSERT INTO public.profiles (
     id, 
+    email,
     name, 
     college, 
     branch, 
     semester, 
-    year,
-    email
+    year
   )
   VALUES (
     new.id,
-    COALESCE(new.raw_user_meta_data->>'name', ''),
-    COALESCE(new.raw_user_meta_data->>'college', ''),
-    COALESCE(new.raw_user_meta_data->>'branch', ''),
+    new.email,
+    COALESCE(new.raw_user_meta_data->>'name', 'User'),
+    COALESCE(new.raw_user_meta_data->>'college', 'Unknown'),
+    COALESCE(new.raw_user_meta_data->>'branch', 'Unknown'),
     COALESCE((new.raw_user_meta_data->>'semester')::integer, 1),
-    COALESCE((new.raw_user_meta_data->>'year')::integer, 1),
-    new.email
+    COALESCE((new.raw_user_meta_data->>'year')::integer, 1)
   );
   RETURN new;
 END;

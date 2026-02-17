@@ -6,8 +6,8 @@ A Next.js-based platform for students to share and access academic resources lik
 
 ### ✅ Task 1: User Authentication & Profiles
 
-- **Registration System**: Email OTP (magic link) authentication - no passwords needed!
-- **Login System**: Magic link sent to email for secure, passwordless authentication
+- **Registration System**: Email/password authentication with Supabase Auth
+- **Login System**: Secure password-based login
 - **User Profiles**: Each user has a comprehensive profile containing:
   - Name
   - Email

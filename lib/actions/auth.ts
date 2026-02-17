@@ -4,8 +4,9 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
-export async function signupWithOTP(formData: {
+export async function signup(formData: {
   email: string
+  password: string
   name: string
   college: string
   branch: string
@@ -14,9 +15,11 @@ export async function signupWithOTP(formData: {
 }) {
   const supabase = await createClient()
 
-  const { error } = await supabase.auth.signInWithOtp({
+  const { data: authData, error: authError } = await supabase.auth.signUp({
     email: formData.email,
+    password: formData.password,
     options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
       data: {
         name: formData.name,
         college: formData.college,
@@ -27,25 +30,36 @@ export async function signupWithOTP(formData: {
     }
   })
 
-  if (error) {
-    return { error: error.message }
+  if (authError) {
+    return { error: authError.message }
   }
 
-  return { success: true, message: 'Check your email for the magic link!' }
+  if (!authData.user) {
+    return { error: 'Failed to create user' }
+  }
+
+  // Check if email confirmation is required
+  if (authData.user.identities && authData.user.identities.length === 0) {
+    return { error: 'User already exists' }
+  }
+
+  return { success: true, message: 'Account created! Check your email to confirm.' }
 }
 
-export async function loginWithOTP(email: string) {
+export async function login(email: string, password: string) {
   const supabase = await createClient()
 
-  const { error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithPassword({
     email,
+    password,
   })
 
   if (error) {
     return { error: error.message }
   }
 
-  return { success: true, message: 'Check your email for the magic link!' }
+  revalidatePath('/', 'layout')
+  redirect('/resources')
 }
 
 export async function logout() {
